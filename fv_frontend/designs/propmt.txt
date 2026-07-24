@@ -1,0 +1,99 @@
+Master AI Production Prompt: "Futbol Vitrini" React + TS MVP
+1. Context & Architectural Constraints
+You are an Expert Frontend Engineer tasked with building the fully interactive Web MVP for Futbol Vitrini, a premium football scouting and analytics platform.
+
+Tech Stack: React 18+ (Functional Components, Hooks), TypeScript (Strict Mode), Tailwind CSS.
+
+State Management: Use React Context API (or Zustand) to simulate a real backend. You must manage global states for: UserRole (Scout, Player, Coach), PlayerPool (mock data), ActiveFilters, and ComparisonSelection.
+
+Design System Implementation: You MUST use the exact Tailwind configuration provided in the DESIGN.md and code.html files.
+
+Backgrounds: #0B0F12 (Pitch Black), #161D24 (Surface Primary).
+
+Accents: #00E676 (Pitch Green) for positive stats/CTAs, #00B0FF (Tactical Blue) for AI features.
+
+Fonts: Barlow (Headings/Data Metrics), Inter (Body/Labels).
+
+2. Global State & Mock Data Layer
+Before building components, create a robust Mock Data engine.
+
+Create a useScoutingStore hook.
+
+Populate at least 10 mock players. Each player object must match this strict TypeScript interface:
+
+TypeScript
+interface Player {
+  id: string;
+  name: string;
+  age: number;
+  position: 'GK' | 'DF' | 'MF' | 'FW';
+  team: string;
+  aiScore: number;
+  matchPercentage?: number; // For AI Smart Matches
+  stats: {
+    pace: number;
+    passing: number;
+    defending: number;
+    physical: number;
+    tackling: number;
+    vision: number;
+    dribbling: number;
+    shooting: number;
+  };
+  metrics: { sprintSpeed: number; shotPower: number; passingAcc: number }; // For Comparison Matrix
+  imageUrl: string;
+}
+3. Core Component Requirements (Based on screen.png)
+A. App Layout & Navigation
+Build a Top Navigation Bar with the brand logo (Barlow, Pitch Green), center navigation links (Player Showcase, Scouting Hub, Coach Dashboard), a search input, and profile controls.
+
+Implement a layout wrapper that contains the main content area and a fixed left-sidebar for filters.
+
+B. Scouting Hub: Left Sidebar (Advanced Filters)
+Build controlled components bound to the global state:
+
+Age Slider: Dual-thumb or single-thumb range slider (16-35).
+
+Position Checkboxes: GK, DF, MF, FW.
+
+Min AI Score Slider: Float values (e.g., 7.5), styled with the Tactical Blue accent.
+
+Action: Changing these filters must instantly update the Player Grid on the right.
+
+C. Scouting Hub: Main Canvas
+AI Smart Matches (Carousel): * Implement a horizontally scrollable container (snap-x, hidden scrollbar).
+
+Cards must have a glowing effect (shadow-[0_0_15px_rgba(0,176,255,0.3)]) and display the matchPercentage badge.
+
+Player Grid:
+
+Responsive grid (grid-cols-1 md:grid-cols-2 xl:grid-cols-4).
+
+Card Anatomy: Player avatar, Name, Position, Age, Team. A 3-column mini-stat grid (e.g., PAC, PAS, DEF). A prominent "AI Overall" score.
+
+Interaction: Each card has a top-right Checkbox. Clicking it adds the player to the ComparisonSelection state array. If selected, change the card's inner border/background slightly to Tactical Blue (bg-tactical-blue/5).
+
+D. Comparison Matrix Drawer (Crucial UX)
+Build a fixed drawer at the bottom of the screen (absolute bottom-0 left-0 right-0).
+
+Animation: It must translate into view (translate-y-0) ONLY when ComparisonSelection.length > 0. Otherwise, it stays hidden off-screen (translate-y-full).
+
+Matrix Logic: * Compare up to 3 selected players side-by-side.
+
+Rows: Overall Rating, Sprint Speed, Shot Power, Passing Acc.
+
+Conditional Formatting: Write a utility function that finds the highest value in each row and colors that specific text in Pitch Green (#00E676), leaving the others in white.
+
+4. Expanding the Ecosystem (Player & Coach Views)
+While the Scouting Hub is primary, structure the routing and placeholder components for the other two personas defined in DESIGN.md:
+
+Player Dashboard: Must include a placeholder for a 5-axis Radar/Spider Chart (Shooting, Passing, Dribbling, Pace, Physicality) using an SVG or chart library (e.g., Recharts) with a translucent Pitch Green fill.
+
+Coach Dashboard: Prepare placeholders for multi-series Line Charts tracking weekly physical loads, and structured Evaluation Forms for tactical compliance.
+
+5. Execution Rules
+Write clean, modular code. Create separate files for /components/layout, /components/scouting, /components/ui (for reusable buttons/inputs), and /store.
+
+Ensure the application is fully responsive. Drop the sidebar into a hamburger menu for mobile viewports.
+
+No dead clicks: All checkboxes, filter sliders, and layout toggles must function and manipulate the mock data in real-time.

@@ -1,0 +1,19 @@
+# Bagimliliklar
+node_modules
+
+# Derleme ciktilari
+dist
+dist-ssr
+coverage
+*.tsbuildinfo
+
+# Ortam degiskenleri
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.idea
+.vscode
+.DS_Store
+*.log

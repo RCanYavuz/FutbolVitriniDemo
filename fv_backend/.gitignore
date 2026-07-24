@@ -1,0 +1,22 @@
+# Bagimliliklar
+node_modules
+
+# Derleme ciktilari
+dist
+build
+coverage
+*.tsbuildinfo
+
+# Ortam degiskenleri
+.env
+.env.*
+!.env.example
+
+# Prisma tarafindan uretilen istemci (build sirasinda yeniden uretilir)
+/src/generated/prisma
+
+# Editor / OS
+.idea
+.vscode
+.DS_Store
+*.log

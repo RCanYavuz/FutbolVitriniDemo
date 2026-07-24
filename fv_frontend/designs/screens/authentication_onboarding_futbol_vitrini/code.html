@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Futbol Vitrini - Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#cae6ff",
+                        "surface-container-low": "#101d27",
+                        "on-tertiary-container": "#4d545d",
+                        "surface-container-lowest": "#030f19",
+                        "background": "#0B0F12", // Adjusted to Pitch Black for layout
+                        "inverse-surface": "#d7e4f2",
+                        "surface-bright": "#2e3b45",
+                        "on-surface-variant": "#bacbb9",
+                        "on-secondary-fixed-variant": "#004b70",
+                        "surface-container-highest": "#2a3641",
+                        "surface-container-high": "#1f2b36",
+                        "pitch-black": "#0B0F12",
+                        "tactical-blue": "#00B0FF",
+                        "on-tertiary-fixed-variant": "#40474f",
+                        "outline": "#859585",
+                        "on-primary-container": "#00612e",
+                        "border-standard": "#2C3A47",
+                        "on-primary-fixed": "#00210b",
+                        "on-surface": "#d7e4f2",
+                        "inverse-on-surface": "#25323c",
+                        "surface-container": "#14212b",
+                        "surface-secondary": "#212B36",
+                        "surface": "#08151e",
+                        "secondary-fixed-dim": "#8dcdff",
+                        "primary-container": "#00e676",
+                        "outline-variant": "#3b4a3d",
+                        "on-background": "#d7e4f2",
+                        "surface-dim": "#08151e",
+                        "on-error": "#690005",
+                        "primary-fixed": "#62ff96",
+                        "tertiary-container": "#c2c9d3",
+                        "accent-red": "#FF4842",
+                        "inverse-primary": "#006d35",
+                        "on-secondary-container": "#003f5f",
+                        "on-secondary": "#00344f",
+                        "primary": "#75ff9e",
+                        "secondary": "#8dcdff",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#2a3641",
+                        "text-muted": "#919EAB",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#151c23",
+                        "secondary-container": "#00affe",
+                        "on-primary": "#003918",
+                        "surface-tint": "#00e475",
+                        "surface-primary": "#161D24",
+                        "on-tertiary": "#2a3139",
+                        "on-primary-fixed-variant": "#005226",
+                        "on-secondary-fixed": "#001e30",
+                        "tertiary-fixed": "#dce3ed",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c0c7d1",
+                        "primary-fixed-dim": "#00e475",
+                        "tertiary": "#dee5ef",
+                        "pitch-green": "#00E676"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin": "16px",
+                        "lg": "24px",
+                        "sm": "12px",
+                        "max-width": "1440px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Barlow", "sans-serif"],
+                        "headline-md": ["Barlow", "sans-serif"],
+                        "label-xs": ["Inter", "sans-serif"],
+                        "mono-data": ["Inter", "monospace"],
+                        "data-metric": ["Barlow", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Barlow", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-xs": ["10px", {"lineHeight": "12px", "fontWeight": "600"}],
+                        "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                        "data-metric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.bg-blur-stadium {
+    background-image: linear-gradient(to bottom, rgba(11, 15, 18, 0.8), rgba(11, 15, 18, 0.95)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuBS6VZTn6WQrmIhotbc973XSgxt6GVU1OgbNRSViac4Ul6GYXcmXbupoId1qsBKIZIrOZ3BeX5czBIer3p0rKYBAMW7SLnypf0gPeUYmPNsjyJpTTJM0BpaykDpsX_ftBDmXfcQPtLhfjh6Xy7hZH5jy0RAPkHtBhVc6baGBuI8_egLuoROTlaSRDvfIe1azTiss7j8TO0DKU8CelSzdMrdfkEKDct9lzTHLRJrrX1nusPSRJrE3SXY);
+    background-size: cover;
+    background-position: center
+    }</style>
+</head>
+<body class="bg-pitch-black text-on-surface font-body-md antialiased min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- Blurred Background Context -->
+<div class="absolute inset-0 z-0 bg-blur-stadium" data-alt="A dark, moody cinematic view of an empty professional soccer stadium at night. Floodlights cut through a subtle mist, illuminating the perfectly manicured grass pitch. The color palette is dominated by deep pitch blacks and dark slate greys, with subtle hints of tactical blue and pitch green reflections. Elite sports intelligence aesthetic."></div>
+<!-- Main Container Modal -->
+<main class="relative z-10 w-full max-w-5xl mx-margin grid grid-cols-1 md:grid-cols-2 rounded-xl border border-border-standard shadow-2xl bg-surface-primary overflow-hidden transition-all duration-500 ease-in-out" id="auth-container">
+<!-- Left Side: Value Props (Static for Login State) -->
+<div class="hidden md:flex flex-col justify-between p-xl bg-surface-secondary/50 border-r border-border-standard" id="left-panel">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-pitch-green mb-sm">Futbol Vitrini</h1>
+<p class="font-body-lg text-body-lg text-text-muted">Elite Analytics &amp; Scouting Network</p>
+</div>
+<div class="space-y-lg mt-xl">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-tactical-blue text-3xl">target</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Get Scouted</h3>
+<p class="font-body-md text-body-md text-text-muted">Showcase your verified physical and technical data to professional networks globally.</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-tactical-blue text-3xl">travel_explore</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Find Elite Talent</h3>
+<p class="font-body-md text-body-md text-text-muted">Utilize advanced filters and AI ratings to identify the next generation of pros.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Dynamic Content Area -->
+<div class="p-xl flex flex-col justify-center relative" id="right-panel">
+<!-- STATE 1: LOGIN -->
+<div class="block" id="state-login">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Welcome Back</h2>
+<p class="font-body-md text-body-md text-text-muted mb-xl">Access your elite intelligence dashboard.</p>
+<form class="space-y-md">
+<div>
+<label class="block font-label-sm text-label-sm text-text-muted mb-xs">Email Address</label>
+<input class="w-full bg-surface-container border border-border-standard rounded-DEFAULT px-md py-sm text-on-surface focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue focus:outline-none transition-colors" placeholder="scout@club.com" type="email"/>
+</div>
+<div>
+<div class="flex justify-between mb-xs">
+<label class="block font-label-sm text-label-sm text-text-muted">Password</label>
+<a class="font-label-sm text-label-sm text-tactical-blue hover:text-secondary-fixed transition-colors" href="#">Forgot?</a>
+</div>
+<input class="w-full bg-surface-container border border-border-standard rounded-DEFAULT px-md py-sm text-on-surface focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue focus:outline-none transition-colors" placeholder="••••••••" type="password"/>
+</div>
+<button class="w-full bg-pitch-green text-pitch-black font-headline-md text-headline-md py-sm rounded-DEFAULT mt-lg hover:bg-primary transition-colors flex items-center justify-center gap-sm" onclick="transitionToRole()" type="button">
+                        Sign In <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<div class="mt-lg text-center">
+<span class="font-body-md text-body-md text-text-muted">New to network?</span>
+<a class="font-body-md text-body-md text-tactical-blue hover:text-secondary-fixed transition-colors ml-xs" href="#">Create an account</a>
+</div>
+</div>
+<!-- STATE 2: ROLE SELECTION (Hidden initially) -->
+<div class="hidden" id="state-role">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm text-center">Choose Your Path</h2>
+<p class="font-body-md text-body-md text-text-muted mb-xl text-center">Select your primary role to customize your dashboard.</p>
+<div class="space-y-md">
+<button class="w-full flex items-center p-md bg-surface-container border border-border-standard rounded-lg hover:border-tactical-blue hover:bg-surface-secondary group transition-all text-left" onclick="transitionToOnboarding()">
+<div class="w-12 h-12 rounded-full bg-surface-primary border border-border-standard flex items-center justify-center mr-md group-hover:border-tactical-blue transition-colors">
+<span class="material-symbols-outlined text-tactical-blue">sports_soccer</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-tactical-blue transition-colors">I am a Player</h3>
+<p class="font-label-sm text-label-sm text-text-muted">Build profile, log data, get discovered.</p>
+</div>
+<span class="material-symbols-outlined text-text-muted group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all">chevron_right</span>
+</button>
+<button class="w-full flex items-center p-md bg-surface-container border border-border-standard rounded-lg hover:border-tactical-blue hover:bg-surface-secondary group transition-all text-left" onclick="transitionToOnboarding()">
+<div class="w-12 h-12 rounded-full bg-surface-primary border border-border-standard flex items-center justify-center mr-md group-hover:border-tactical-blue transition-colors">
+<span class="material-symbols-outlined text-tactical-blue">radar</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-tactical-blue transition-colors">I am a Scout</h3>
+<p class="font-label-sm text-label-sm text-text-muted">Access elite database, analyze metrics.</p>
+</div>
+<span class="material-symbols-outlined text-text-muted group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all">chevron_right</span>
+</button>
+<button class="w-full flex items-center p-md bg-surface-container border border-border-standard rounded-lg hover:border-tactical-blue hover:bg-surface-secondary group transition-all text-left" onclick="transitionToOnboarding()">
+<div class="w-12 h-12 rounded-full bg-surface-primary border border-border-standard flex items-center justify-center mr-md group-hover:border-tactical-blue transition-colors">
+<span class="material-symbols-outlined text-tactical-blue">groups</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-tactical-blue transition-colors">I am a Coach</h3>
+<p class="font-label-sm text-label-sm text-text-muted">Manage squads, monitor player development.</p>
+</div>
+<span class="material-symbols-outlined text-text-muted group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- STATE 3: ONBOARDING STEP (Hidden initially) -->
+<div class="hidden" id="state-onboard">
+<!-- Progress Bar -->
+<div class="flex items-center justify-between mb-xl">
+<div class="flex-1 flex items-center">
+<div class="w-8 h-8 rounded-full bg-pitch-green flex items-center justify-center text-pitch-black font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="flex-1 h-1 mx-xs bg-pitch-green"></div>
+</div>
+<div class="flex-1 flex items-center">
+<div class="w-8 h-8 rounded-full border-2 border-tactical-blue bg-surface-primary flex items-center justify-center text-tactical-blue font-label-sm text-label-sm">2</div>
+<div class="flex-1 h-1 mx-xs bg-border-standard"></div>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-border-standard bg-surface-container flex items-center justify-center text-text-muted font-label-sm text-label-sm">3</div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Physical Stats</h2>
+<p class="font-body-md text-body-md text-text-muted mb-xl">Accurate data is crucial for scout visibility.</p>
+<form class="space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block font-label-sm text-label-sm text-text-muted mb-xs">Height (cm)</label>
+<input class="w-full bg-surface-container border border-border-standard rounded-DEFAULT px-md py-sm text-on-surface font-mono-data text-mono-data focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue focus:outline-none transition-colors" placeholder="180" type="number"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-muted mb-xs">Weight (kg)</label>
+<input class="w-full bg-surface-container border border-border-standard rounded-DEFAULT px-md py-sm text-on-surface font-mono-data text-mono-data focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue focus:outline-none transition-colors" placeholder="75" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-muted mb-sm">Preferred Foot</label>
+<div class="flex rounded-DEFAULT border border-border-standard overflow-hidden bg-surface-container">
+<button class="flex-1 py-sm font-label-sm text-label-sm text-text-muted hover:bg-surface-secondary border-r border-border-standard transition-colors focus:bg-tactical-blue focus:text-surface-primary" type="button">Left</button>
+<button class="flex-1 py-sm font-label-sm text-label-sm text-on-surface bg-surface-secondary border-r border-border-standard transition-colors focus:bg-tactical-blue focus:text-surface-primary" type="button">Right</button>
+<button class="flex-1 py-sm font-label-sm text-label-sm text-text-muted hover:bg-surface-secondary transition-colors focus:bg-tactical-blue focus:text-surface-primary" type="button">Both</button>
+</div>
+</div>
+<button class="w-full bg-pitch-green text-pitch-black font-headline-md text-headline-md py-sm rounded-DEFAULT mt-lg hover:bg-primary transition-colors flex items-center justify-center gap-sm" onclick="alert('Onboarding Complete')" type="button">
+                        Continue <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+</main>
+<script>
+        function transitionToRole() {
+            document.getElementById('state-login').classList.add('hidden');
+            document.getElementById('state-role').classList.remove('hidden');
+            document.getElementById('auth-container').classList.remove('md:grid-cols-2');
+            document.getElementById('left-panel').classList.add('hidden');
+            // Recenter modal slightly
+            document.getElementById('auth-container').classList.add('max-w-md');
+        }
+
+        function transitionToOnboarding() {
+            document.getElementById('state-role').classList.add('hidden');
+            document.getElementById('state-onboard').classList.remove('hidden');
+        }
+    </script>
+</body></html>

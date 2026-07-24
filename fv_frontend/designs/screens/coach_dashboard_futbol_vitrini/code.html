@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Futbol Vitrini - Coach Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tactical-blue": "#00B0FF",
+                        "on-tertiary-container": "#4d545d",
+                        "primary": "#75ff9e",
+                        "pitch-black": "#0B0F12",
+                        "surface-bright": "#2e3b45",
+                        "on-secondary-fixed-variant": "#004b70",
+                        "surface-container": "#14212b",
+                        "accent-red": "#FF4842",
+                        "tertiary-fixed-dim": "#c0c7d1",
+                        "background": "#08151e",
+                        "on-primary-container": "#00612e",
+                        "surface-tint": "#00e475",
+                        "primary-fixed": "#62ff96",
+                        "secondary-fixed-dim": "#8dcdff",
+                        "outline": "#859585",
+                        "secondary": "#8dcdff",
+                        "tertiary": "#dee5ef",
+                        "text-muted": "#919EAB",
+                        "inverse-on-surface": "#25323c",
+                        "on-secondary-container": "#003f5f",
+                        "on-background": "#d7e4f2",
+                        "primary-container": "#00e676",
+                        "secondary-container": "#00affe",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#00210b",
+                        "on-tertiary-fixed-variant": "#40474f",
+                        "on-secondary-fixed": "#001e30",
+                        "surface": "#08151e",
+                        "pitch-green": "#00E676",
+                        "tertiary-container": "#c2c9d3",
+                        "on-primary-fixed-variant": "#005226",
+                        "surface-secondary": "#212B36",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#bacbb9",
+                        "border-standard": "#2C3A47",
+                        "surface-container-highest": "#2a3641",
+                        "primary-fixed-dim": "#00e475",
+                        "on-tertiary-fixed": "#151c23",
+                        "surface-dim": "#08151e",
+                        "secondary-fixed": "#cae6ff",
+                        "surface-container-low": "#101d27",
+                        "inverse-surface": "#d7e4f2",
+                        "on-tertiary": "#2a3139",
+                        "inverse-primary": "#006d35",
+                        "on-error": "#690005",
+                        "surface-container-high": "#1f2b36",
+                        "on-secondary": "#00344f",
+                        "on-surface": "#d7e4f2",
+                        "surface-container-lowest": "#030f19",
+                        "surface-primary": "#161D24",
+                        "tertiary-fixed": "#dce3ed",
+                        "surface-variant": "#2a3641",
+                        "outline-variant": "#3b4a3d",
+                        "on-primary": "#003918"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "lg": "24px",
+                        "max-width": "1440px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Barlow"],
+                        "label-xs": ["Inter"],
+                        "mono-data": ["Inter"],
+                        "headline-md": ["Barlow"],
+                        "display-lg": ["Barlow"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "data-metric": ["Barlow"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-xs": ["10px", { "lineHeight": "12px", "fontWeight": "600" }],
+                        "mono-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "data-metric": ["24px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.pitch-black'); color: theme('colors.on-surface'); }
+        /* Map specific text classes to fonts */
+        .font-headline-md { font-family: 'Barlow', sans-serif; }
+        .font-body-md { font-family: 'Inter', sans-serif; }
+        .font-label-sm { font-family: 'Inter', sans-serif; }
+        .font-mono-data { font-family: 'Inter', monospace; }
+        .font-data-metric { font-family: 'Barlow', sans-serif; }
+        
+        .chart-grid { stroke: theme('colors.border-standard'); stroke-width: 1; }
+        .line-green { stroke: theme('colors.pitch-green'); stroke-width: 2; fill: none; }
+        .line-blue { stroke: theme('colors.tactical-blue'); stroke-width: 2; fill: none; }
+        .point-green { fill: theme('colors.pitch-black'); stroke: theme('colors.pitch-green'); stroke-width: 2; }
+        .point-blue { fill: theme('colors.pitch-black'); stroke: theme('colors.tactical-blue'); stroke-width: 2; }
+        
+        .pitch-lines { stroke: theme('colors.border-standard'); stroke-width: 2; fill: none; opacity: 0.5; }
+        .player-marker { fill: theme('colors.surface-secondary'); stroke: theme('colors.border-standard'); stroke-width: 2; transition: all 0.2s; cursor: pointer; }
+        .player-marker:hover { fill: theme('colors.surface-container-high'); stroke: theme('colors.pitch-green'); }
+        .player-marker.selected { stroke: theme('colors.pitch-green'); stroke-width: 3; }
+        .marker-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; fill: theme('colors.on-surface'); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+        
+        .rating-btn { transition: all 0.2s ease; }
+        .rating-btn.active { background-color: theme('colors.pitch-green'); color: theme('colors.pitch-black'); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md bg-pitch-black text-on-surface">
+<!-- Top Navigation (Futbol Vitrini JSON) -->
+<nav class="bg-surface-container dark:bg-surface-container docked full-width top-0 border-b border-border-standard flat no shadows font-body-md text-body-md text-primary">
+<div class="flex justify-between items-center w-full px-lg h-16 max-w-max-width mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-pitch-green uppercase tracking-tight">Futbol Vitrini</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all scale-95 active:opacity-80 px-2 py-1" href="#">Player Showcase</a>
+<a class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all scale-95 active:opacity-80 px-2 py-1" href="#">Scouting Hub</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:bg-surface-secondary transition-all scale-95 active:opacity-80 px-2 py-1" href="#">Coach Dashboard</a>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="text-text-muted hover:text-on-surface hover:bg-surface-secondary transition-all p-2 rounded scale-95 active:opacity-80" title="notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-text-muted hover:text-on-surface hover:bg-surface-secondary transition-all p-2 rounded scale-95 active:opacity-80" title="settings">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-standard ml-2">
+<img alt="Lead Scout Profile" class="w-full h-full object-cover" data-alt="A small circular avatar profile picture of a professional football coach wearing a dark technical training jacket. The background is a blurred stadium at night with subtle cold blue and stark white floodlights. The style is modern corporate, elite sports intelligence, high contrast, clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-BZQh4IzPw5pnW8Q2k2CKL0Fv5f8qQUJ8G0ifHX2ESTp7g8ajfPe_NUh57xSSQXEdMNWZVg-qIt1Kv_DHJ0PQ22ea4ppeu96UudHlKQ-xaadJOxVR9DpTNVQIKcdLi4SnOpRuzbG_iXCgPRsnkuV_WqqelzMD8Db2lvhdsCL4SajH2blaSPEJGFIVw0F9PBNLAW5oVnJOFGol3vpT7UBeHxy7Ag58PB-BJGEZnzRx6qq2rkmBm1Ib"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-max-width mx-auto w-full px-margin md:px-gutter py-lg grid grid-cols-1 lg:grid-cols-12 gap-lg overflow-y-auto">
+<!-- Header Section -->
+<header class="lg:col-span-12 flex justify-between items-end mb-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight mb-1">Squad Monitoring Workspace</h1>
+<p class="font-body-md text-body-md text-text-muted">Real-time analytical performance tracking and data entry.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-pitch-green"></div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Physical</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tactical-blue"></div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Tactical</span>
+</div>
+</div>
+</header>
+<!-- Top Section: Trend Chart -->
+<section class="lg:col-span-12 bg-surface-primary border border-border-standard rounded-lg p-lg relative h-[320px]">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Performance Trends (12 Weeks)</h2>
+<div class="absolute top-lg right-lg text-right">
+<span class="block font-data-metric text-data-metric text-pitch-green">87.4%</span>
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Peak Physical</span>
+</div>
+<div class="w-full h-[200px] mt-4 relative group">
+<!-- SVG Chart Mockup -->
+<svg height="100%" preserveaspectratio="none" viewbox="0 0 1000 200" width="100%">
+<!-- Grid Lines -->
+<line class="chart-grid" x1="0" x2="1000" y1="50" y2="50"></line>
+<line class="chart-grid" x1="0" x2="1000" y1="100" y2="100"></line>
+<line class="chart-grid" x1="0" x2="1000" y1="150" y2="150"></line>
+<line class="chart-grid" x1="0" x2="1000" y1="200" y2="200"></line>
+<!-- Tactical Blue Line (Discipline) -->
+<path class="line-blue" d="M 0,120 Q 100,140 200,90 T 400,110 T 600,60 T 800,80 T 1000,40"></path>
+<!-- Points Blue -->
+<circle class="point-blue" cx="200" cy="90" r="4"></circle>
+<circle class="point-blue" cx="400" cy="110" r="4"></circle>
+<circle class="point-blue" cx="600" cy="60" r="4"></circle>
+<circle class="point-blue" cx="800" cy="80" r="4"></circle>
+<!-- Pitch Green Line (Physical) -->
+<path class="line-green" d="M 0,160 Q 100,100 200,130 T 400,70 T 600,150 T 800,50 T 1000,20"></path>
+<!-- Points Green -->
+<circle class="point-green" cx="200" cy="130" r="4"></circle>
+<circle class="point-green" cx="400" cy="70" r="4"></circle>
+<circle class="point-green" cx="600" cy="150" r="4"></circle>
+<circle class="point-green" cx="800" cy="50" r="4"></circle>
+</svg>
+<!-- Simple Tooltip Mockup -->
+<div class="absolute hidden group-hover:block top-1/4 left-[40%] bg-surface-secondary border border-border-standard p-2 rounded shadow-lg pointer-events-none z-10">
+<div class="font-label-sm text-label-sm text-on-surface mb-1">Week 6</div>
+<div class="font-mono-data text-mono-data text-pitch-green">Phy: 82</div>
+<div class="font-mono-data text-mono-data text-tactical-blue">Tac: 76</div>
+</div>
+</div>
+<div class="flex justify-between w-full font-label-sm text-label-sm text-text-muted mt-2 px-2">
+<span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span><span>W12</span>
+</div>
+</section>
+<!-- Bottom Left: Tactical Pitch View -->
+<section class="lg:col-span-7 bg-surface-primary border border-border-standard rounded-lg p-lg h-[500px] flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Tactical Map View</h2>
+<button class="text-tactical-blue hover:text-secondary transition-colors text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter Roles
+                </button>
+</div>
+<div class="flex-1 bg-surface-container rounded border border-border-standard relative flex items-center justify-center p-4">
+<!-- SVG Pitch -->
+<svg class="bg-[#121c22]" height="100%" viewbox="0 0 400 600" width="100%">
+<!-- Field Outline -->
+<rect class="pitch-lines" height="560" width="360" x="20" y="20"></rect>
+<!-- Center Line -->
+<line class="pitch-lines" x1="20" x2="380" y1="300" y2="300"></line>
+<!-- Center Circle -->
+<circle class="pitch-lines" cx="200" cy="300" r="50"></circle>
+<circle cx="200" cy="300" fill="#2C3A47" r="2"></circle>
+<!-- Penalty Areas -->
+<rect class="pitch-lines" height="90" width="200" x="100" y="20"></rect>
+<rect class="pitch-lines" height="90" width="200" x="100" y="490"></rect>
+<!-- Goal Areas -->
+<rect class="pitch-lines" height="30" width="100" x="150" y="20"></rect>
+<rect class="pitch-lines" height="30" width="100" x="150" y="550"></rect>
+<!-- Penalty Spots -->
+<circle cx="200" cy="80" fill="#2C3A47" r="2"></circle>
+<circle cx="200" cy="520" fill="#2C3A47" r="2"></circle>
+<!-- Arcs -->
+<path class="pitch-lines" d="M 160 110 A 50 50 0 0 0 240 110"></path>
+<path class="pitch-lines" d="M 160 490 A 50 50 0 0 1 240 490"></path>
+<!-- Player Markers -->
+<g class="player-group" transform="translate(200, 50)">
+<circle class="player-marker" cx="0" cy="0" r="14"></circle>
+<text class="marker-text" x="0" y="0">GK</text>
+</g>
+<g class="player-group" transform="translate(150, 160)">
+<circle class="player-marker" cx="0" cy="0" r="14"></circle>
+<text class="marker-text" x="0" y="0">CB</text>
+</g>
+<g class="player-group" transform="translate(250, 160)">
+<circle class="player-marker" cx="0" cy="0" r="14"></circle>
+<text class="marker-text" x="0" y="0">CB</text>
+</g>
+<!-- Selected CM -->
+<g class="player-group cursor-pointer" transform="translate(200, 320)">
+<circle class="player-marker selected" cx="0" cy="0" r="16"></circle>
+<text class="marker-text font-bold" x="0" y="0">CM</text>
+<!-- Selection Ring -->
+<circle cx="0" cy="0" fill="none" opacity="0.8" r="22" stroke="#00E676" stroke-dasharray="4" stroke-width="1"></circle>
+</g>
+<g class="player-group" transform="translate(200, 450)">
+<circle class="player-marker" cx="0" cy="0" r="14"></circle>
+<text class="marker-text" x="0" y="0">ST</text>
+</g>
+</svg>
+<!-- Overlay Info Panel -->
+<div class="absolute bottom-4 left-4 bg-surface-secondary border border-border-standard p-3 rounded shadow-lg">
+<div class="font-label-sm text-label-sm text-pitch-green uppercase mb-1">Selected Focus</div>
+<div class="font-headline-md text-body-lg font-bold text-on-surface">Central Mid (CM)</div>
+<div class="font-mono-data text-label-sm text-text-muted mt-1">ID: #08 • K. Arslan</div>
+</div>
+</div>
+</section>
+<!-- Bottom Right: Data Entry Form -->
+<section class="lg:col-span-5 bg-surface-primary border border-border-standard rounded-lg p-lg h-[500px] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">New Performance Entry</h2>
+<span class="material-symbols-outlined text-tactical-blue">analytics</span>
+</div>
+<form class="flex-1 flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- Player Select -->
+<div>
+<label class="block font-label-sm text-label-sm text-text-muted uppercase mb-2">Target Player</label>
+<div class="relative">
+<select class="w-full bg-surface-container border border-border-standard rounded-lg p-3 text-on-surface font-body-md appearance-none focus:outline-none focus:border-tactical-blue transition-colors">
+<option value="">Select Player...</option>
+<option selected="" value="1">K. Arslan (CM) - #08</option>
+<option value="2">M. Demir (ST) - #09</option>
+<option value="3">A. Yilmaz (CB) - #04</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Rating Segments -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Technical -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="font-label-sm text-label-sm text-text-muted uppercase">Technical Rating</label>
+<span class="font-mono-data text-label-xs text-pitch-green">7/10</span>
+</div>
+<div class="flex rounded-lg overflow-hidden border border-border-standard">
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">1</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">3</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">5</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-pitch-green text-pitch-black font-bold rating-btn active" type="button">7</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">9</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted rating-btn" type="button">10</button>
+</div>
+</div>
+<!-- Physical -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="font-label-sm text-label-sm text-text-muted uppercase">Physical Intensity</label>
+<span class="font-mono-data text-label-xs text-text-muted">--/10</span>
+</div>
+<div class="flex rounded-lg overflow-hidden border border-border-standard">
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">1</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">3</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">5</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">7</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted border-r border-border-standard rating-btn" type="button">9</button>
+<button class="flex-1 py-2 font-mono-data text-sm bg-surface-container hover:bg-surface-secondary text-text-muted rating-btn" type="button">10</button>
+</div>
+</div>
+</div>
+<!-- Notes Area -->
+<div class="flex-1 flex flex-col">
+<label class="block font-label-sm text-label-sm text-text-muted uppercase mb-2">Coach Notes</label>
+<textarea class="flex-1 w-full bg-surface-container border border-border-standard rounded-lg p-3 text-on-surface font-body-md focus:outline-none focus:border-tactical-blue transition-colors resize-none placeholder:text-text-muted/50" placeholder="Observe transition speed in defensive phases..."></textarea>
+</div>
+<!-- Submit Action -->
+<button class="w-full mt-auto bg-pitch-green text-pitch-black font-headline-md text-body-lg py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors active:scale-[0.98]" type="submit">
+<span class="material-symbols-outlined">memory</span>
+                    Log Entry &amp; Update AI Metrics
+                </button>
+</form>
+</section>
+</main>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('.rating-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const siblingBtns = this.parentElement.querySelectorAll('.rating-btn');
+                siblingBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-pitch-green', 'text-pitch-black', 'font-bold');
+                    b.classList.add('bg-surface-container', 'text-text-muted');
+                });
+                this.classList.remove('bg-surface-container', 'text-text-muted');
+                this.classList.add('active', 'bg-pitch-green', 'text-pitch-black', 'font-bold');
+                
+                // Update text label above
+                const labelContainer = this.parentElement.previousElementSibling;
+                if(labelContainer) {
+                    const span = labelContainer.querySelector('span');
+                    if(span) {
+                        span.textContent = this.textContent + '/10';
+                        span.classList.add('text-pitch-green');
+                        span.classList.remove('text-text-muted');
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

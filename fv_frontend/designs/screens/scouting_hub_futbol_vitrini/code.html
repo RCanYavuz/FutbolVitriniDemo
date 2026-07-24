@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Futbol Vitrini - Scouting Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Barlow:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tactical-blue": "#00B0FF",
+                    "on-tertiary-container": "#4d545d",
+                    "primary": "#75ff9e",
+                    "pitch-black": "#0B0F12",
+                    "surface-bright": "#2e3b45",
+                    "on-secondary-fixed-variant": "#004b70",
+                    "surface-container": "#14212b",
+                    "accent-red": "#FF4842",
+                    "tertiary-fixed-dim": "#c0c7d1",
+                    "background": "#08151e",
+                    "on-primary-container": "#00612e",
+                    "surface-tint": "#00e475",
+                    "primary-fixed": "#62ff96",
+                    "secondary-fixed-dim": "#8dcdff",
+                    "outline": "#859585",
+                    "secondary": "#8dcdff",
+                    "tertiary": "#dee5ef",
+                    "text-muted": "#919EAB",
+                    "inverse-on-surface": "#25323c",
+                    "on-secondary-container": "#003f5f",
+                    "on-background": "#d7e4f2",
+                    "primary-container": "#00e676",
+                    "secondary-container": "#00affe",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#00210b",
+                    "on-tertiary-fixed-variant": "#40474f",
+                    "on-secondary-fixed": "#001e30",
+                    "surface": "#08151e",
+                    "pitch-green": "#00E676",
+                    "tertiary-container": "#c2c9d3",
+                    "on-primary-fixed-variant": "#005226",
+                    "surface-secondary": "#212B36",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#bacbb9",
+                    "border-standard": "#2C3A47",
+                    "surface-container-highest": "#2a3641",
+                    "primary-fixed-dim": "#00e475",
+                    "on-tertiary-fixed": "#151c23",
+                    "surface-dim": "#08151e",
+                    "secondary-fixed": "#cae6ff",
+                    "surface-container-low": "#101d27",
+                    "inverse-surface": "#d7e4f2",
+                    "on-tertiary": "#2a3139",
+                    "inverse-primary": "#006d35",
+                    "on-error": "#690005",
+                    "surface-container-high": "#1f2b36",
+                    "on-secondary": "#00344f",
+                    "on-surface": "#d7e4f2",
+                    "surface-container-lowest": "#030f19",
+                    "surface-primary": "#161D24",
+                    "tertiary-fixed": "#dce3ed",
+                    "surface-variant": "#2a3641",
+                    "outline-variant": "#3b4a3d",
+                    "on-primary": "#003918"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "24px",
+                    "max-width": "1440px",
+                    "md": "16px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Barlow"
+                    ],
+                    "label-xs": [
+                            "Inter"
+                    ],
+                    "mono-data": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Barlow"
+                    ],
+                    "display-lg": [
+                            "Barlow"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "data-metric": [
+                            "Barlow"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-xs": [
+                            "10px",
+                            {
+                                    "lineHeight": "12px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "mono-data": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "data-metric": [
+                            "24px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #0B0F12; color: #d7e4f2; }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00E676;
+            cursor: pointer;
+        }
+        .ai-glow {
+            box-shadow: 0 0 15px rgba(0, 176, 255, 0.3);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md bg-pitch-black h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container font-body-md text-body-md border-b border-border-standard flex justify-between items-center w-full px-lg h-16 max-w-max-width mx-auto flex-shrink-0 z-50">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-pitch-green">Futbol Vitrini</span>
+<div class="hidden md:flex items-center space-x-md">
+<a class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all px-3 py-2 rounded-lg font-body-md text-body-md scale-95 active:opacity-80 transition-transform" href="#">Player Showcase</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:bg-surface-secondary transition-all px-3 py-2 font-body-md text-body-md scale-95 active:opacity-80 transition-transform" href="#">Scouting Hub</a>
+<a class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all px-3 py-2 rounded-lg font-body-md text-body-md scale-95 active:opacity-80 transition-transform" href="#">Coach Dashboard</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="bg-surface-primary border border-border-standard rounded-full py-1 pl-10 pr-4 text-on-surface focus:outline-none focus:border-tactical-blue w-64 text-sm font-body-md" placeholder="Search players, clubs..." type="text"/>
+</div>
+<button class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all p-2 rounded-full scale-95 active:opacity-80 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary transition-all p-2 rounded-full scale-95 active:opacity-80 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-standard ml-2">
+<img alt="Lead Scout Profile" class="w-full h-full object-cover" data-alt="A close-up headshot of a professional football scout. The scout is wearing a dark, modern corporate blazer. The background is a blurred, high-tech analytics command center. High contrast, cinematic lighting emphasizing an analytical and authoritative mood. Elite sports analytics aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ilmKTZBQ0WgTDySdWdBf36VQwn2ihuGKhy2tuDHBgBTnz4-_H_MrvvY1f4NSiLQ7N6p4WbhL1Nb7YX0wroo-pQKvGY6u7TNdswWFf4azH-KOM3StdqTpoqk-B_CMWzbUZYdpl3h7-AQaRbNcaduAMZXVFi76bTXtlOcuIMysJWACsKckkLZiWPB3cWY2XBD5CxnCHXMexCEkM3Jj2FZWeZy-CDD749Kq55_uRveHkpg-TPRswcrm"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden max-w-max-width mx-auto w-full relative">
+<!-- SideNavBar / Filters -->
+<aside class="bg-surface-primary dark:bg-surface-primary border-r border-border-standard w-[300px] flex-shrink-0 hidden lg:flex flex-col h-full overflow-y-auto">
+<div class="p-lg border-b border-border-standard">
+<div class="flex items-center gap-sm mb-4">
+<span class="material-symbols-outlined text-tactical-blue">tune</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Advanced Filters</h2>
+</div>
+<button class="w-full bg-pitch-green text-pitch-black font-body-md text-body-md font-semibold py-2 rounded-lg hover:bg-primary-fixed-dim transition-colors mb-2">Apply Filters</button>
+<button class="w-full text-text-muted font-body-md text-body-md py-2 hover:text-on-surface transition-colors">Reset All</button>
+</div>
+<div class="p-lg space-y-6 flex-1">
+<!-- Age Range -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-body-md text-body-md text-on-surface">Age</label>
+<span class="text-tactical-blue font-mono-data text-mono-data">16 - 35</span>
+</div>
+<input class="w-full h-1 bg-surface-secondary rounded-lg appearance-none cursor-pointer slider-thumb accent-pitch-green" max="40" min="16" type="range" value="35"/>
+</div>
+<!-- Position -->
+<div>
+<label class="font-body-md text-body-md text-on-surface block mb-3">Position</label>
+<div class="grid grid-cols-2 gap-3">
+<label class="flex items-center space-x-2 cursor-pointer group">
+<input class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green focus:ring-offset-pitch-black" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-muted group-hover:text-on-surface">GK</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer group">
+<input checked="" class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green focus:ring-offset-pitch-black" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-muted group-hover:text-on-surface">DF</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer group">
+<input checked="" class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green focus:ring-offset-pitch-black" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-muted group-hover:text-on-surface">MF</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer group">
+<input checked="" class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green focus:ring-offset-pitch-black" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-muted group-hover:text-on-surface">FW</span>
+</label>
+</div>
+</div>
+<!-- Contract Status -->
+<div>
+<label class="font-body-md text-body-md text-on-surface block mb-3">Contract Status</label>
+<select class="w-full bg-surface-secondary border border-border-standard text-on-surface font-body-md text-body-md rounded-lg p-2 focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue outline-none">
+<option>Any Status</option>
+<option>Expiring &lt; 6 Months</option>
+<option>Free Agent</option>
+<option>Under Contract</option>
+</select>
+</div>
+<!-- AI Score Min -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-body-md text-body-md text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-tactical-blue text-sm">auto_awesome</span>
+                            Min AI Score
+                        </label>
+<span class="text-tactical-blue font-data-metric text-data-metric text-lg">7.5</span>
+</div>
+<input class="w-full h-1 bg-surface-secondary rounded-lg appearance-none cursor-pointer slider-thumb accent-tactical-blue" max="10" min="5" step="0.1" type="range" value="7.5"/>
+</div>
+</div>
+</aside>
+<!-- Right Panel (Canvas) -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background relative">
+<div class="flex-1 overflow-y-auto p-lg lg:p-[24px]">
+<!-- AI SMART MATCHES Carousel -->
+<section class="mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-tactical-blue" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                        AI Smart Matches
+                    </h3>
+<div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
+<!-- AI Card 1 -->
+<div class="min-w-[300px] md:min-w-[400px] bg-surface-primary border border-tactical-blue/30 rounded-xl p-4 flex gap-4 snap-start ai-glow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tactical-blue/10 rounded-bl-full -z-0"></div>
+<img class="w-20 h-20 rounded-lg object-cover z-10 border border-border-standard" data-alt="Dynamic portrait of a young male football forward in mid-action running. Wearing a generic dark grey kit. High contrast studio lighting against a pitch black background with subtle blue glowing analytics nodes in the background. Elite sports aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCcz5zqlYsGnGfjath5H6uKXaJn83dhXm9VIsAU8VlcnLA7-bgl2F5Nzedmn4Inmni1EEX0qKAY68MeGtBNlu4RDG6w1Wa89VBqPliK5S8aRHCFZFgIysf7-7tljeVJaVakP4ReH1KQbfQczQ03oKdmTmop9wriT1G3D8_IzDZwSXn0iEiN4zg42xZRmQkzeiI24hniqVG6StcvzD8AYuxvk0nyWd9L2fArjMso6thliQ174AYqN4i"/>
+<div class="flex-1 z-10">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Lucas Silva</h4>
+<span class="bg-tactical-blue/20 text-tactical-blue font-label-xs text-label-xs px-2 py-1 rounded border border-tactical-blue/50">94% MATCH</span>
+</div>
+<p class="text-text-muted font-label-sm text-label-sm mb-2">FW • 21y • FC Porto B</p>
+<p class="text-on-surface font-body-md text-body-md text-sm">Fits your tactical need for a high-pressing striker with top-decile acceleration.</p>
+</div>
+</div>
+<!-- AI Card 2 -->
+<div class="min-w-[300px] md:min-w-[400px] bg-surface-primary border border-tactical-blue/20 rounded-xl p-4 flex gap-4 snap-start relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tactical-blue/5 rounded-bl-full -z-0"></div>
+<img class="w-20 h-20 rounded-lg object-cover z-10 border border-border-standard" data-alt="Concentrated portrait of a young male defensive midfielder looking tactical. Generic sleek dark kit. High contrast lighting against black background. Professional sports analytics vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9WgwHUNMLQLlXGyq_FkH5x2pYRl23T2SBtkIv5U_bGSabLzaQxr7cTrws-gh1aFWsRxAp2qFIOgBFE6n1d6iKlYHEhFDwS61_GHK8s6Z9z5cPtSCp--y-4IwdjzgeFVp7UpE7TRDy1GA4Pcp7feScjEEv_4UTwKEfDWDzHbskjd2HgwEKEGFYo8SseFmOd55YtZ8qpyA3rccfGq4Xf2NLO6iHd2iSLiWgffZwh-8rKfDlmv1wSxIH"/>
+<div class="flex-1 z-10">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Mateo Kovac</h4>
+<span class="bg-tactical-blue/10 text-tactical-blue font-label-xs text-label-xs px-2 py-1 rounded border border-tactical-blue/30">88% MATCH</span>
+</div>
+<p class="text-text-muted font-label-sm text-label-sm mb-2">DM • 23y • Dinamo Zagreb</p>
+<p class="text-on-surface font-body-md text-body-md text-sm">Excellent pivot option. High volume accurate progressive passes under pressure.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Grid Results Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-md gap-4">
+<h3 class="font-body-lg text-body-lg text-text-muted"><span class="text-on-surface font-bold">142</span> Elite Talents Found</h3>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-secondary rounded-lg p-1 border border-border-standard">
+<button class="p-1 rounded bg-surface-primary shadow-sm text-on-surface"><span class="material-symbols-outlined text-sm">grid_view</span></button>
+<button class="p-1 rounded text-text-muted hover:text-on-surface"><span class="material-symbols-outlined text-sm">view_list</span></button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-text-muted font-label-sm text-label-sm">Sort by:</span>
+<select class="bg-surface-secondary border border-border-standard text-on-surface font-label-sm text-label-sm rounded px-2 py-1 focus:border-tactical-blue outline-none">
+<option>Highest Rating</option>
+<option>Age (Low to High)</option>
+<option>Market Value</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Player Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-[100px]">
+<!-- Player Card 1 -->
+<div class="bg-surface-primary border border-border-standard rounded-xl p-4 hover:border-surface-variant transition-colors group relative">
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center space-x-2 cursor-pointer bg-pitch-black/50 p-1 rounded backdrop-blur-sm">
+<input class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green" type="checkbox"/>
+<span class="font-label-xs text-label-xs text-text-muted uppercase">Compare</span>
+</label>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-surface-secondary" data-alt="Headshot of a fast looking football winger. Dark background, professional lighting. Elite sports." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY2w3D4o9nbMKjVQxOxr3BN1cVNQfjjCXABcw746niLnJRvxEtChM3tNHCLmnxEY-PTXue9KWtv8Y6t7MSHNfoq08I0ud-Q4AehQZ1cVtdd8308Drta8pd1Eqc0JkwuasK5vS5jCaHwae2ftDwL93CwIJOhiJ_UBehYWaVlv2-ysHvMtRvW_S5DojaKx4A7FDrdK-xluXrEpP4ObLntz51n_fLnaXgR_bF23X4HSGS6XOwA3V6RHlS"/>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Alexandro P.</h4>
+<p class="text-text-muted font-label-sm text-label-sm">LW • 19y</p>
+<p class="text-text-muted font-label-xs text-label-xs">Santos FC</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 border-t border-b border-border-standard py-3">
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Pace</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">91</div>
+</div>
+<div class="text-center border-l border-r border-border-standard">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Pass</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">78</div>
+</div>
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Def</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">42</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-label-sm text-label-sm">AI Overall</span>
+<span class="bg-pitch-black text-tactical-blue font-data-metric text-data-metric px-3 py-1 rounded-lg border border-tactical-blue/50 shadow-[0_0_10px_rgba(0,176,255,0.2)]">8.7</span>
+</div>
+</div>
+<!-- Player Card 2 -->
+<div class="bg-surface-primary border border-tactical-blue/50 rounded-xl p-4 relative group">
+<div class="absolute inset-0 bg-tactical-blue/5 rounded-xl pointer-events-none"></div>
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center space-x-2 cursor-pointer bg-pitch-black/50 p-1 rounded backdrop-blur-sm">
+<input checked="" class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green" type="checkbox"/>
+<span class="font-label-xs text-label-xs text-pitch-green uppercase">Selected</span>
+</label>
+</div>
+<div class="flex items-center gap-4 mb-4 relative z-10">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-tactical-blue" data-alt="Headshot of a commanding central defender. Intense gaze. Dark background. Professional sports analytics aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBac3S2Vj9i8x6cv6AIHgLrgSoTQbL0q2gXV4TNs7E37MSgAI-TdxzWfdTBL98EY-9eGaGar1GyqWnjFZkLPA3E1lCOqJGlnkT8z-Cirrs6eYsT2l-7d50GUEqNoK1-M5Oq3g30xKo6ZOPkTBwLSnqf5zyxDv6dMBblwvcqYPEnscWgaZYBazhWc2LjqmmBCw_PxvTK1ObrMIpHE_N7kVGU_r-w2gx3CuPxby3dEzw889Rh2KpD68a6"/>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">David O.</h4>
+<p class="text-text-muted font-label-sm text-label-sm">CB • 24y</p>
+<p class="text-text-muted font-label-xs text-label-xs">FC Basel</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 border-t border-b border-border-standard py-3 relative z-10">
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Phy</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">89</div>
+</div>
+<div class="text-center border-l border-r border-border-standard">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Tck</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">85</div>
+</div>
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Pas</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">72</div>
+</div>
+</div>
+<div class="flex justify-between items-center relative z-10">
+<span class="text-on-surface font-label-sm text-label-sm">AI Overall</span>
+<span class="bg-pitch-black text-tactical-blue font-data-metric text-data-metric px-3 py-1 rounded-lg border border-tactical-blue/50 shadow-[0_0_10px_rgba(0,176,255,0.2)]">8.5</span>
+</div>
+</div>
+<!-- Player Card 3 -->
+<div class="bg-surface-primary border border-border-standard rounded-xl p-4 hover:border-surface-variant transition-colors group relative">
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center space-x-2 cursor-pointer bg-pitch-black/50 p-1 rounded backdrop-blur-sm">
+<input class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green" type="checkbox"/>
+<span class="font-label-xs text-label-xs text-text-muted uppercase">Compare</span>
+</label>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-surface-secondary" data-alt="Headshot of a creative attacking midfielder. Clean cut. Dark premium sports background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCryddQc-g10zLOGtTURJIRyd3zzBMdwRVWwwN7wXlLAloVKQkjfvEZwwMuOs1F5bIy-EaZc_vTYIbpTK0tSsNmfzGBSj1nTMg3whNgPUvuZvKkM6eztHzwPtKpHb4xoa7PiURRFtf6AL9L66oFJw504nBJn4zxsD49R1u7qGZV171DMk2eRKbdxYs_rv3PPvsXAAbcnD3DLVXgJeccZ2o1TcEg58v1MIa3pSv35GIr5uI6YZ5NIpB0"/>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Enzo M.</h4>
+<p class="text-text-muted font-label-sm text-label-sm">CAM • 20y</p>
+<p class="text-text-muted font-label-xs text-label-xs">River Plate</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 border-t border-b border-border-standard py-3">
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Vis</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">88</div>
+</div>
+<div class="text-center border-l border-r border-border-standard">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Dri</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">86</div>
+</div>
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Sht</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">76</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-label-sm text-label-sm">AI Overall</span>
+<span class="bg-pitch-black text-tactical-blue font-data-metric text-data-metric px-3 py-1 rounded-lg border border-tactical-blue/50 shadow-[0_0_10px_rgba(0,176,255,0.2)]">8.4</span>
+</div>
+</div>
+<!-- Player Card 4 -->
+<div class="bg-surface-primary border border-tactical-blue/50 rounded-xl p-4 relative group">
+<div class="absolute inset-0 bg-tactical-blue/5 rounded-xl pointer-events-none"></div>
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center space-x-2 cursor-pointer bg-pitch-black/50 p-1 rounded backdrop-blur-sm">
+<input checked="" class="form-checkbox text-pitch-green bg-surface-secondary border-border-standard rounded focus:ring-pitch-green" type="checkbox"/>
+<span class="font-label-xs text-label-xs text-pitch-green uppercase">Selected</span>
+</label>
+</div>
+<div class="flex items-center gap-4 mb-4 relative z-10">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-tactical-blue" data-alt="Headshot of an agile full back. Focused expression. Professional high contrast dark sports lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcVTKJXn8VNPq0E2AF3hsUso0iZC0IMwz1k2Gl16-YgwnSBMzo7tmJHQmnBOL6vn6Awfsgp2IdGvok06jurHS7KmBIGCbtiqBWeQ54hnvu4SOT8zVOwleMuHtg-YwjySe36tUeYhGuG1UO1PNJBL43a3T3dzXtt2F2A2bwSDLZC04ruQ2Z_SPhj-dGmpxxNpAw4AKmxDgyFbiUr0FYhifGvVzrbj9GMjgKZfMwqyxSwFoth8aUCk4P"/>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-on-surface">Hakim Z.</h4>
+<p class="text-text-muted font-label-sm text-label-sm">RB • 22y</p>
+<p class="text-text-muted font-label-xs text-label-xs">Ajax</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4 border-t border-b border-border-standard py-3 relative z-10">
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Pac</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">87</div>
+</div>
+<div class="text-center border-l border-r border-border-standard">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Cro</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">82</div>
+</div>
+<div class="text-center">
+<div class="text-text-muted font-label-xs text-label-xs uppercase">Sta</div>
+<div class="font-data-metric text-data-metric text-on-surface text-lg">90</div>
+</div>
+</div>
+<div class="flex justify-between items-center relative z-10">
+<span class="text-on-surface font-label-sm text-label-sm">AI Overall</span>
+<span class="bg-pitch-black text-tactical-blue font-data-metric text-data-metric px-3 py-1 rounded-lg border border-tactical-blue/50 shadow-[0_0_10px_rgba(0,176,255,0.2)]">8.3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Comparison Drawer -->
+<div class="absolute bottom-0 left-0 right-0 bg-surface-secondary border-t border-border-standard shadow-[0_-10px_30px_rgba(0,0,0,0.5)] z-40 transform translate-y-0 transition-transform duration-300 rounded-t-xl">
+<div class="p-4 max-w-5xl mx-auto">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-pitch-green">compare_arrows</span>
+                            Comparison Matrix
+                        </h3>
+<div class="flex gap-4">
+<button class="bg-pitch-green text-pitch-black font-body-md font-semibold px-4 py-2 rounded hover:bg-primary-fixed-dim transition-colors">Generate Full Report</button>
+<button class="text-text-muted hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+</div>
+</div>
+<div class="grid grid-cols-5 gap-4 items-center bg-pitch-black p-4 rounded-lg border border-border-standard">
+<!-- Labels -->
+<div class="col-span-1 space-y-4 font-label-sm text-label-sm text-text-muted uppercase text-right pr-4 border-r border-border-standard">
+<div class="h-8"></div> <!-- Spacer for names -->
+<div>Overall Rating</div>
+<div>Sprint Speed</div>
+<div>Shot Power</div>
+<div>Passing Acc.</div>
+</div>
+<!-- Player 1 -->
+<div class="col-span-2 space-y-4 text-center">
+<div class="font-body-lg text-body-lg font-bold text-on-surface h-8 flex items-center justify-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Small thumbnail headshot of David O. Dark sports background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8TjH3yT_2pFqgnRIu0ejGplmLgvCbGi6jigJTiGS6Vx2V0gvV4h5RvoeTZpUteVWuqD4DbFnDYIeeq1MEpYDm7rw_KXk6Mdvqb3NtX8FnlMAd5VYwWX0l4-DRMRR6TUamUJAEHKlU9eM3zxFxxt1SrdCm3CnV873YjjqZ2V7uAj4WS7V32wvHo2dfRjEU7H9zaSRtI_VSg0DYnQepPl2_Z0VVCAEcNv0LeC53O-98YEqEGvV6cpaL"/>
+                                David O.
+                            </div>
+<div class="font-mono-data text-mono-data text-pitch-green font-bold">8.5</div>
+<div class="font-mono-data text-mono-data text-on-surface">78</div>
+<div class="font-mono-data text-mono-data text-on-surface">65</div>
+<div class="font-mono-data text-mono-data text-pitch-green font-bold">88%</div>
+</div>
+<!-- Player 2 -->
+<div class="col-span-2 space-y-4 text-center border-l border-border-standard">
+<div class="font-body-lg text-body-lg font-bold text-on-surface h-8 flex items-center justify-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Small thumbnail headshot of Hakim Z. Dark sports background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC45PmZTgfFOEPcldiK2b7WAvu5RlycE7ao1nbfZ-csTeDnxeCaswNLin9EctuoxLk7YgzC6HG35ep6Ohts5XWxdbD_xGXDM_1QFMSQQ7oZEEqqX7DN1rdgnUX9D24q3HSHzCpZl6rOZA2Ak_eFhSN5AQgoD2zTYKiJnXIS4af_BuYMeD2cRT3kDS8X5rNrJqzSA2rA8fwaplRFRQRMRRxbpi1eNmF7A64Z2pTP7o30EdXrXs68-fGk"/>
+                                Hakim Z.
+                            </div>
+<div class="font-mono-data text-mono-data text-on-surface">8.3</div>
+<div class="font-mono-data text-mono-data text-pitch-green font-bold">87</div>
+<div class="font-mono-data text-mono-data text-pitch-green font-bold">72</div>
+<div class="font-mono-data text-mono-data text-on-surface">82%</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

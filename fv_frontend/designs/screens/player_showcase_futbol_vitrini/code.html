@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Player Showcase - Futbol Vitrini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tactical-blue": "#00B0FF",
+                        "on-tertiary-container": "#4d545d",
+                        "primary": "#75ff9e",
+                        "pitch-black": "#0B0F12",
+                        "surface-bright": "#2e3b45",
+                        "on-secondary-fixed-variant": "#004b70",
+                        "surface-container": "#14212b",
+                        "accent-red": "#FF4842",
+                        "tertiary-fixed-dim": "#c0c7d1",
+                        "background": "#08151e",
+                        "on-primary-container": "#00612e",
+                        "surface-tint": "#00e475",
+                        "primary-fixed": "#62ff96",
+                        "secondary-fixed-dim": "#8dcdff",
+                        "outline": "#859585",
+                        "secondary": "#8dcdff",
+                        "tertiary": "#dee5ef",
+                        "text-muted": "#919EAB",
+                        "inverse-on-surface": "#25323c",
+                        "on-secondary-container": "#003f5f",
+                        "on-background": "#d7e4f2",
+                        "primary-container": "#00e676",
+                        "secondary-container": "#00affe",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#00210b",
+                        "on-tertiary-fixed-variant": "#40474f",
+                        "on-secondary-fixed": "#001e30",
+                        "surface": "#08151e",
+                        "pitch-green": "#00E676",
+                        "tertiary-container": "#c2c9d3",
+                        "on-primary-fixed-variant": "#005226",
+                        "surface-secondary": "#212B36",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#bacbb9",
+                        "border-standard": "#2C3A47",
+                        "surface-container-highest": "#2a3641",
+                        "primary-fixed-dim": "#00e475",
+                        "on-tertiary-fixed": "#151c23",
+                        "surface-dim": "#08151e",
+                        "secondary-fixed": "#cae6ff",
+                        "surface-container-low": "#101d27",
+                        "inverse-surface": "#d7e4f2",
+                        "on-tertiary": "#2a3139",
+                        "inverse-primary": "#006d35",
+                        "on-error": "#690005",
+                        "surface-container-high": "#1f2b36",
+                        "on-secondary": "#00344f",
+                        "on-surface": "#d7e4f2",
+                        "surface-container-lowest": "#030f19",
+                        "surface-primary": "#161D24",
+                        "tertiary-fixed": "#dce3ed",
+                        "surface-variant": "#2a3641",
+                        "outline-variant": "#3b4a3d",
+                        "on-primary": "#003918"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "lg": "24px",
+                        "max-width": "1440px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Barlow"],
+                        "label-xs": ["Inter"],
+                        "mono-data": ["Inter"],
+                        "headline-md": ["Barlow"],
+                        "display-lg": ["Barlow"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "data-metric": ["Barlow"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-xs": ["10px", {"lineHeight": "12px", "fontWeight": "600"}],
+                        "mono-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "data-metric": ["24px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0B0F12; color: #d7e4f2; }
+        .glass-panel { background: rgba(22, 29, 36, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid #2C3A47; }
+        .radar-grid { stroke: #2C3A47; stroke-width: 1; fill: none; }
+        .radar-area { fill: rgba(0, 230, 118, 0.2); stroke: #00E676; stroke-width: 2; transition: all 0.3s ease; }
+        .radar-area:hover { fill: rgba(0, 230, 118, 0.4); }
+        .timeline-line { position: absolute; left: 15px; top: 20px; bottom: 20px; width: 2px; background: #2C3A47; }
+        .timeline-node { position: absolute; left: 11px; width: 10px; height: 10px; border-radius: 50%; background: #0B0F12; border: 2px solid #00E676; }
+        
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F12; }
+        ::-webkit-scrollbar-thumb { background: #2C3A47; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #212B36; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md bg-pitch-black selection:bg-tactical-blue selection:text-white overflow-x-hidden">
+<!-- Top Navigation (Shared Component Integration) -->
+<nav class="bg-surface-container dark:bg-surface-container docked full-width top-0 border-b border-border-standard flat no shadows sticky z-50">
+<div class="flex justify-between items-center w-full px-lg h-16 max-w-max-width mx-auto">
+<!-- Brand & Search -->
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-pitch-green tracking-tight hover:opacity-80 transition-opacity" href="#">
+                    Futbol Vitrini
+                </a>
+<!-- Search Bar -->
+<div class="hidden md:flex relative items-center w-64 group">
+<span class="material-symbols-outlined absolute left-3 text-text-muted group-focus-within:text-tactical-blue transition-colors z-10 pointer-events-none" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-surface-secondary border border-border-standard text-on-surface placeholder-text-muted rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-tactical-blue focus:ring-1 focus:ring-tactical-blue transition-all font-body-md text-sm" placeholder="Search players, clubs..." type="text"/>
+</div>
+</div>
+<!-- Central Navigation Tabs (Web) -->
+<div class="hidden md:flex items-center gap-6 h-full">
+<!-- Active Tab -->
+<a class="h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 relative group" href="#">
+<span>Player Showcase</span>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity -z-10 rounded-t-md"></div>
+</a>
+<!-- Inactive Tabs -->
+<a class="h-full flex items-center text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary px-3 -mx-3 rounded-md" href="#">
+<span>Scouting Hub</span>
+</a>
+<a class="h-full flex items-center text-text-muted hover:text-on-surface transition-colors hover:bg-surface-secondary px-3 -mx-3 rounded-md" href="#">
+<span>Coach Dashboard</span>
+</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-text-muted hover:text-on-surface hover:bg-surface-secondary rounded-full transition-all scale-95 active:opacity-80 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-accent-red rounded-full border border-surface-container animate-pulse"></span>
+</button>
+<button class="p-2 text-text-muted hover:text-on-surface hover:bg-surface-secondary rounded-full transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-border-standard hover:border-tactical-blue transition-colors ml-2">
+<img alt="Lead Scout Profile" class="w-full h-full object-cover" data-alt="A professional headshot of an elite football scout. Close up, dramatic dark studio lighting. Modern corporate aesthetic, sharp focus, high contrast. A serious, analytical expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC13aoS5iLQfRsvlwMknvNEEA2mza-4RU_u9IDV_a8ZT0gumlTDo6Q6pd2OqafIbG0KQomKclD6NXVX20U-3wIjRXq5jjTHkBOAkwyw-YGVBWVqXYVhJCJFvk8c3D1aKZrOOzwMipciBgQ89EC83CkppZnyw8rwFXsyVeYwO7YKP--D__JR8y3IVpKuLwa68aUlN3rJTevLQaYXKx_Bi61LyAohy1COM2q8serbpUZ4c_ajXeO8sCLZ"/>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-max-width mx-auto px-md md:px-lg py-lg md:py-xl grid grid-cols-1 lg:grid-cols-12 gap-lg relative">
+<!-- Background Ambient Glow (Subtle) -->
+<div class="absolute top-0 left-1/4 w-1/2 h-64 bg-tactical-blue/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Left Column: Identity & Biometrics (1/3) -->
+<div class="lg:col-span-4 flex flex-col gap-lg z-10">
+<!-- Identity Card -->
+<div class="bg-surface-primary border border-border-standard rounded-xl overflow-hidden relative group shadow-lg">
+<!-- Subtle Gradient Overlay on Header -->
+<div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-surface-secondary to-transparent z-0"></div>
+<div class="p-lg relative z-10 flex flex-col items-center text-center">
+<!-- Avatar with Status -->
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full border-4 border-surface-primary overflow-hidden shadow-xl ring-2 ring-border-standard group-hover:ring-tactical-blue transition-all duration-300">
+<img alt="Kerem Yılmaz Profile" class="w-full h-full object-cover" data-alt="A hyper-realistic studio portrait of a young athletic male football player, 21 years old. Facing forward, serious determined expression. Short dark hair. Wearing a sleek, dark modern sports jersey. Dramatic cinematic lighting, pitch black background, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDda5Wj7k9wJ9JhjixVptmADR3XZb8fkYN79-CXKSMbDzxP4ShYLfkULSPvpyK0O8M4hvKmA16QbZ5dbjyspxAa1hoz_9nCZDecK_gNMedMXX84s3BFcu69ncQneRBcxIJt-lBo66AjXT3fOS5XUENY1uEl8PTmAzauKYA_O42fB4KjzN-D8S_tdqRpMKa-0HQ3iOvrtnAP2GZDzfXF3EyiBJqsJMqsU4S6WDx3B0eFTLH_6aL9iZaU"/>
+</div>
+<div class="absolute bottom-2 right-2 w-4 h-4 bg-pitch-green rounded-full border-2 border-surface-primary ring-2 ring-pitch-green/30 animate-pulse" title="Online"></div>
+</div>
+<!-- Name & Badges -->
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Kerem Yılmaz</h1>
+<div class="flex flex-wrap justify-center gap-2 mb-4">
+<span class="inline-flex items-center gap-1 bg-surface-secondary text-on-surface px-3 py-1 rounded-full font-label-sm text-label-sm border border-border-standard">
+<img alt="Turkey" class="rounded-[2px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ix0XoZynlvegstTZUX6FWD157frsAsy8hTyVlAU-yUa2MgvvkzLaH4HI3N3B63XT6UVB3xgYluddM5y8TzaR0D0wNnUTCY3st9dUNhkxTAnERtYS4G2kL4Dm28Z48O1iMDWe-h7atwZ-C02hGV7MHZ7FPa26gPhcsIIKDL5hHa240jhyH5-MHb2-qr9NTaBi9kHqYA_baiaQD9Y3ZchiNS38oFhxEKj_1baR8atliS3Xu54EZUQ8" width="16"/>
+                            Turkey
+                        </span>
+<span class="inline-flex items-center gap-1 bg-tactical-blue/10 text-tactical-blue px-3 py-1 rounded-full font-label-sm text-label-sm border border-tactical-blue/20">
+                            LW - Left Winger
+                        </span>
+<span class="inline-flex items-center gap-1 bg-surface-variant text-text-muted px-3 py-1 rounded-full font-label-sm text-label-sm border border-border-standard">
+                            Age 21
+                        </span>
+</div>
+<!-- Contract Status -->
+<div class="w-full bg-surface-container-high border border-border-standard rounded-lg p-3 flex justify-between items-center mb-6">
+<span class="text-text-muted text-sm">Status</span>
+<span class="font-mono-data text-mono-data text-pitch-green bg-pitch-green/10 px-2 py-0.5 rounded border border-pitch-green/20 uppercase tracking-wider">Free Agent</span>
+</div>
+<!-- Biometric Grid -->
+<div class="w-full grid grid-cols-2 gap-px bg-border-standard rounded-lg overflow-hidden border border-border-standard">
+<div class="bg-surface-primary p-4 flex flex-col items-center">
+<span class="material-symbols-outlined text-text-muted mb-1" style="font-variation-settings: 'FILL' 0;">height</span>
+<span class="font-data-metric text-data-metric text-on-surface">182<span class="text-sm font-normal text-text-muted ml-0.5">cm</span></span>
+<span class="text-xs text-text-muted mt-1 uppercase tracking-wider">Height</span>
+</div>
+<div class="bg-surface-primary p-4 flex flex-col items-center">
+<span class="material-symbols-outlined text-text-muted mb-1" style="font-variation-settings: 'FILL' 0;">monitor_weight</span>
+<span class="font-data-metric text-data-metric text-on-surface">76<span class="text-sm font-normal text-text-muted ml-0.5">kg</span></span>
+<span class="text-xs text-text-muted mt-1 uppercase tracking-wider">Weight</span>
+</div>
+<div class="bg-surface-primary p-4 flex flex-col items-center">
+<span class="material-symbols-outlined text-text-muted mb-1" style="font-variation-settings: 'FILL' 0;">foot_bones</span>
+<span class="font-data-metric text-data-metric text-on-surface">Left</span>
+<span class="text-xs text-text-muted mt-1 uppercase tracking-wider">Pref. Foot</span>
+</div>
+<div class="bg-surface-primary p-4 flex flex-col items-center">
+<span class="material-symbols-outlined text-text-muted mb-1" style="font-variation-settings: 'FILL' 0;">numbers</span>
+<span class="font-data-metric text-data-metric text-on-surface">11</span>
+<span class="text-xs text-text-muted mt-1 uppercase tracking-wider">Shirt No.</span>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full mt-6 bg-pitch-green hover:bg-primary-fixed text-pitch-black font-body-md font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors focus:ring-2 focus:ring-pitch-green focus:ring-offset-2 focus:ring-offset-surface-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+                        Contact Agent / Player
+                    </button>
+</div>
+</div>
+<!-- Mini AI Insight Card (Generative Touch) -->
+<div class="glass-panel rounded-xl p-md relative overflow-hidden group">
+<div class="absolute inset-0 bg-tactical-blue/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start gap-3 relative z-10">
+<div class="p-2 bg-tactical-blue/10 rounded-lg text-tactical-blue">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-on-surface mb-1 uppercase tracking-wider">Scout AI Summary</h3>
+<p class="text-sm text-text-muted leading-relaxed">High-pace winger with excellent close control. Thrives in isolation situations on the left flank. Decision-making in final third improving.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Analytics & Media (2/3) -->
+<div class="lg:col-span-8 flex flex-col gap-lg z-10">
+<!-- Career Timeline -->
+<div class="bg-surface-primary border border-border-standard rounded-xl p-lg shadow-lg">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted" style="font-variation-settings: 'FILL' 0;">history</span>
+                        Career Progression
+                    </h2>
+<button class="text-sm text-tactical-blue hover:text-secondary hover:underline">View Full Record</button>
+</div>
+<div class="relative pl-8 pb-2">
+<div class="timeline-line"></div>
+<!-- 2025 Node -->
+<div class="relative mb-8 group">
+<div class="timeline-node top-1.5 group-hover:bg-pitch-green transition-colors shadow-[0_0_10px_rgba(0,230,118,0.5)]"></div>
+<div class="bg-surface-secondary border border-border-standard rounded-lg p-4 ml-4 transition-all group-hover:border-pitch-green/50">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
+<div>
+<span class="text-xs font-bold text-pitch-green bg-pitch-green/10 px-2 py-1 rounded mr-2">2025</span>
+<span class="font-bold text-on-surface text-lg">Süper Lig Alt Yapı</span>
+</div>
+<span class="text-xs text-text-muted">U19 Elite League</span>
+</div>
+<div class="grid grid-cols-3 gap-4 border-t border-border-standard pt-3">
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Matches</div>
+<div class="font-mono-data text-on-surface">14</div>
+</div>
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Goals</div>
+<div class="font-mono-data text-on-surface">6</div>
+</div>
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Minutes</div>
+<div class="font-mono-data text-on-surface">1,120</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2024 Node -->
+<div class="relative mb-8 group opacity-80 hover:opacity-100 transition-opacity">
+<div class="timeline-node top-1.5 border-tactical-blue group-hover:bg-tactical-blue transition-colors"></div>
+<div class="bg-surface-container-high border border-border-standard rounded-lg p-4 ml-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
+<div>
+<span class="text-xs font-bold text-text-muted bg-surface-variant px-2 py-1 rounded mr-2">2024</span>
+<span class="font-bold text-on-surface text-lg">Bölgesel Lig B</span>
+</div>
+<span class="text-xs text-text-muted">Regional Amateur</span>
+</div>
+<div class="grid grid-cols-3 gap-4 border-t border-border-standard pt-3">
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Matches</div>
+<div class="font-mono-data text-on-surface">22</div>
+</div>
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Goals</div>
+<div class="font-mono-data text-on-surface">11</div>
+</div>
+<div>
+<div class="text-xs text-text-muted uppercase tracking-wider mb-1">Minutes</div>
+<div class="font-mono-data text-on-surface">1,850</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2023 Node -->
+<div class="relative group opacity-60 hover:opacity-100 transition-opacity">
+<div class="timeline-node top-1.5 border-text-muted group-hover:bg-text-muted transition-colors"></div>
+<div class="bg-surface-container-high border border-border-standard rounded-lg p-4 ml-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
+<div>
+<span class="text-xs font-bold text-text-muted bg-surface-variant px-2 py-1 rounded mr-2">2023</span>
+<span class="font-bold text-on-surface">Amatör Kulüp A</span>
+</div>
+<span class="text-xs text-text-muted">Local League</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Split: Radar & Video -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg flex-grow">
+<!-- Box A: Radar Chart -->
+<div class="bg-surface-primary border border-border-standard rounded-xl p-lg flex flex-col shadow-lg">
+<h2 class="font-headline-md text-lg text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted" style="font-variation-settings: 'FILL' 0;">radar</span>
+                        Attribute Profile
+                    </h2>
+<div class="flex-grow flex items-center justify-center relative min-h-[250px]">
+<!-- SVG Radar Chart Simulation -->
+<svg class="w-full max-w-[280px] h-auto overflow-visible" viewbox="0 0 200 200">
+<!-- Background Grid -->
+<polygon class="radar-grid" points="100,10 186,72 153,172 47,172 14,72"></polygon>
+<polygon class="radar-grid" points="100,32 165,80 140,155 60,155 35,80"></polygon>
+<polygon class="radar-grid" points="100,55 143,87 126,138 74,138 57,87"></polygon>
+<polygon class="radar-grid" points="100,77 122,94 113,121 87,121 78,94"></polygon>
+<!-- Axes -->
+<line stroke="#2C3A47" stroke-width="1" x1="100" x2="100" y1="100" y2="10"></line>
+<line stroke="#2C3A47" stroke-width="1" x1="100" x2="186" y1="100" y2="72"></line>
+<line stroke="#2C3A47" stroke-width="1" x1="100" x2="153" y1="100" y2="172"></line>
+<line stroke="#2C3A47" stroke-width="1" x1="100" x2="47" y1="100" y2="172"></line>
+<line stroke="#2C3A47" stroke-width="1" x1="100" x2="14" y1="100" y2="72"></line>
+<!-- Data Area (Pace 88, Shooting 79, Passing 82, Phys 74, Dribbling 91) -->
+<!-- Rough points mapping: Top(Dribbling), TR(Pace), BR(Shooting), BL(Passing), TL(Phys) -->
+<polygon class="radar-area" points="100,18 175,76 138,157 58,159 22,70"></polygon>
+<!-- Data Points -->
+<circle cx="100" cy="18" fill="#00E676" r="3"></circle>
+<circle cx="175" cy="76" fill="#00E676" r="3"></circle>
+<circle cx="138" cy="157" fill="#00E676" r="3"></circle>
+<circle cx="58" cy="159" fill="#00E676" r="3"></circle>
+<circle cx="22" cy="70" fill="#00E676" r="3"></circle>
+<!-- Labels -->
+<text fill="#d7e4f2" font-family="Inter" font-size="8" font-weight="600" text-anchor="middle" x="100" y="0">DRIBBLING 91</text>
+<text fill="#d7e4f2" font-family="Inter" font-size="8" font-weight="600" text-anchor="start" x="190" y="70">PACE 88</text>
+<text fill="#d7e4f2" font-family="Inter" font-size="8" font-weight="600" text-anchor="start" x="160" y="182">SHOOTING 79</text>
+<text fill="#d7e4f2" font-family="Inter" font-size="8" font-weight="600" text-anchor="end" x="40" y="182">PASSING 82</text>
+<text fill="#d7e4f2" font-family="Inter" font-size="8" font-weight="600" text-anchor="end" x="10" y="70">PHYSICAL 74</text>
+</svg>
+</div>
+</div>
+<!-- Box B: Highlight Video -->
+<div class="bg-surface-primary border border-border-standard rounded-xl overflow-hidden flex flex-col shadow-lg">
+<!-- Video Container (16:9) -->
+<div class="relative w-full aspect-video bg-pitch-black group cursor-pointer">
+<img alt="Highlight Reel" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A wide-angle, cinematic still frame from a football match highlight video. The camera is positioned low, capturing a dynamic left winger in mid-stride, dribbling past a defender. The lighting is dramatic stadium floodlights against a dark sky. The aesthetic is high-definition sports broadcast, gritty and intense. The grass is a vibrant, deep green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC__LNMlvZiqT6oZyszPoptVY059hh-yUPESmLuqv_szVC6AvOGMPfrDV9mmQCDYGyV4xIwDTtHEUnbxitX9wBIcX4Js443_7Vl8WO9GkgIKe7l7qke9-w9dJNVw_HiwUEyImc5OOvr5QCMrnqagcQZTCTFlOBKzneINLcOcSo5b59RKIPt1zdq4IK8viDOWdFsNfi9thuGdDQei4p3ucM7uIqrSbVRYsrYpuN_6HEY74gvzC4Sqhcj"/>
+<!-- Video Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-pitch-black/80 via-transparent to-transparent"></div>
+<!-- Center Play Button -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-16 h-16 bg-pitch-green/90 rounded-full flex items-center justify-center text-pitch-black transform scale-90 group-hover:scale-100 transition-all shadow-[0_0_20px_rgba(0,230,118,0.4)] backdrop-blur-sm">
+<span class="material-symbols-outlined text-4xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<!-- Top Right Badge -->
+<div class="absolute top-3 right-3 bg-pitch-black/70 backdrop-blur-md border border-border-standard text-white text-xs px-2 py-1 rounded flex items-center gap-1 font-mono-data">
+<span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+                            Match Highlights
+                        </div>
+</div>
+<!-- Interactive Action Tags -->
+<div class="p-4 bg-surface-secondary flex-grow flex flex-col">
+<div class="text-sm text-text-muted mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">smart_display</span>
+                            Key Moments
+                        </div>
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-between p-2 rounded bg-surface-container-high border border-transparent hover:border-tactical-blue/50 hover:bg-surface-bright transition-colors text-left group">
+<span class="font-mono-data text-tactical-blue group-hover:text-secondary text-sm">01:14</span>
+<span class="text-sm text-on-surface flex-grow ml-3">Solo Goal</span>
+<span class="material-symbols-outlined text-text-muted text-sm group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all" style="font-variation-settings: 'FILL' 0;">fitbit_today</span>
+</button>
+<button class="w-full flex items-center justify-between p-2 rounded bg-surface-container-high border border-transparent hover:border-tactical-blue/50 hover:bg-surface-bright transition-colors text-left group">
+<span class="font-mono-data text-tactical-blue group-hover:text-secondary text-sm">04:45</span>
+<span class="text-sm text-on-surface flex-grow ml-3">Key Assist</span>
+<span class="material-symbols-outlined text-text-muted text-sm group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all" style="font-variation-settings: 'FILL' 0;">fitbit_today</span>
+</button>
+<button class="w-full flex items-center justify-between p-2 rounded bg-surface-container-high border border-transparent hover:border-tactical-blue/50 hover:bg-surface-bright transition-colors text-left group">
+<span class="font-mono-data text-tactical-blue group-hover:text-secondary text-sm">07:12</span>
+<span class="text-sm text-on-surface flex-grow ml-3">Dribbling Run</span>
+<span class="material-symbols-outlined text-text-muted text-sm group-hover:text-tactical-blue opacity-0 group-hover:opacity-100 transition-all" style="font-variation-settings: 'FILL' 0;">fitbit_today</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,119 @@
+// Futbol Vitrini - veritabani semasi
+//
+// Alan adlari ve enum degerleri, fv_frontend'in bekledigi veri sekliyle (src/store/types.ts)
+// birebir ortusecek sekilde secilmistir.
+// Dokumantasyon: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  // NestJS varsayilan olarak CommonJS'e derledigi icin uretilen istemci de CJS olmali.
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Genis erisim rolu (frontend: UserRole)
+enum Role {
+  ADMIN
+  CLUB
+  PLAYER
+}
+
+/// Ince rol; frontend'deki gorunumu belirler (frontend: UserSubRole)
+enum SubRole {
+  ADMIN
+  SCOUT
+  COACH
+  PLAYER
+}
+
+/// Kayit sonrasi admin onay akisi
+enum AccountStatus {
+  PENDING
+  ACTIVE
+  REJECTED
+}
+
+/// Oyuncu mevkileri (frontend: Position)
+enum Position {
+  GK
+  DF
+  MF
+  FW
+}
+
+model User {
+  id           String        @id @default(uuid())
+  username     String        @unique
+  email        String        @unique
+  displayName  String
+  passwordHash String
+  role         Role
+  subRole      SubRole
+  avatarUrl    String        @default("")
+  status       AccountStatus @default(PENDING)
+
+  /// Kayit sirasinda scout/antrenorun girdigi kurum ve uzmanlik (opsiyonel)
+  organization String?
+  expertise    String?
+
+  /// Oyuncu kaydinda girilen temel profil bilgileri
+  position      Position?
+  preferredFoot String?
+  birthDate     DateTime? @db.Date
+  currentClub   String?
+
+  /// Refresh token'in SHA-256 ozeti - logout ve token rotasyonu icin
+  refreshTokenHash String?
+
+  players   Player[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@map("users")
+}
+
+model Player {
+  id              String   @id @default(uuid())
+  name            String
+  age             Int
+  position        Position
+  team            String
+  /// 0-10 arasi yapay zeka puani
+  aiScore         Float
+  /// Scout'un taktigine uyum yuzdesi (opsiyonel - AI eslesmeleri icin)
+  matchPercentage Int?
+  aiReasoning     String?
+  imageUrl        String   @default("")
+
+  // ── Teknik/fiziksel istatistikler (0-100) → frontend PlayerStats ──
+  pace      Int
+  passing   Int
+  defending Int
+  physical  Int
+  tackling  Int
+  vision    Int
+  dribbling Int
+  shooting  Int
+
+  // ── Olculen metrikler (0-100) → frontend PlayerMetrics ──
+  sprintSpeed Int
+  shotPower   Int
+  passingAcc  Int
+
+  /// Profili olusturan kullanici (seed verisi icin admin). Silinirse oyuncu da silinir.
+  ownerId String?
+  owner   User?   @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId])
+  @@index([position])
+  @@index([aiScore])
+  @@map("players")
+}

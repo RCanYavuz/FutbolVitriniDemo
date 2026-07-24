@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // prisma.config.ts derlemeye girerse rootDir proje koku olur ve cikti dist/src altina kayar.
+    "rootDir": "src",
+    // Nest her build'de dist'i sildigi icin kalici incremental cache eksik JS uretebiliyordu.
+    "incremental": false
+  },
+  "exclude": ["node_modules", "test", "dist", "prisma", "prisma.config.ts", "**/*spec.ts"]
+}
