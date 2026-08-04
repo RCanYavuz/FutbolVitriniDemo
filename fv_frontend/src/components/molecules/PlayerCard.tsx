@@ -5,6 +5,7 @@
  * `featured` prop'u ile öne çıkarılmış kartlar için altın border ve yıldız badge gösterir.
  */
 
+import { useState } from 'react';
 import {
   MapPin,
   Calendar,
@@ -13,8 +14,13 @@ import {
   GitCompareArrows,
   Banknote,
   TrendingUp,
+  Bookmark,
+  Share2,
+  Check,
 } from 'lucide-react';
 import Badge from '../atoms/Badge';
+import ImageWithFallback from '../atoms/ImageWithFallback';
+import { useScoutingStore } from '../../store/scoutingStore';
 import { positionVariant } from '../atoms/badge-utils';
 import type { Player } from '../../store/types';
 import { computeMarketValue, formatMarketValue } from '../../lib/hooks/usePlayersQuery';
@@ -85,6 +91,16 @@ export default function MarketplacePlayerCard({
   onQuickView,
   onCompare,
 }: MarketplacePlayerCardProps) {
+  const { bookmarkedPlayers, toggleBookmark } = useScoutingStore();
+  const isBookmarked = bookmarkedPlayers.includes(player.id);
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(`${window.location.origin}/player/${player.id}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   const fmRating = computeFMOverall(player);
   const value = computeMarketValue(player.aiScore);
   const tag = ageTag(player.age);
@@ -141,7 +157,7 @@ export default function MarketplacePlayerCard({
       <div className="p-4 pb-3 flex items-start gap-3.5">
         {/* Avatar */}
         <div className="relative flex-shrink-0">
-          <img
+          <ImageWithFallback
             src={avatarUrl}
             alt={player.name}
             loading="lazy"
@@ -210,7 +226,24 @@ export default function MarketplacePlayerCard({
         </div>
 
         {/* Action buttons */}
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className={`flex items-center gap-1 transition-opacity ${isBookmarked ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); toggleBookmark(player.id); }}
+            className={`p-1.5 rounded-md transition-all ${isBookmarked ? 'text-emerald-400 bg-emerald-500/20' : 'text-text-muted hover:text-emerald-400 hover:bg-emerald-500/10'}`}
+            title="Favorilere Ekle"
+          >
+            <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
+          </button>
+          
+          <button
+            type="button"
+            onClick={handleShare}
+            className="p-1.5 rounded-md text-text-muted hover:text-tactical-blue hover:bg-sky-500/10 transition-all"
+            title="Bağlantıyı Kopyala"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+          </button>
           {onQuickView && (
             <button
               type="button"

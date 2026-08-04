@@ -8,6 +8,7 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import { playersApi } from '../players.api';
 import { mockPlayers } from '../../store/mockData';
+import { useAuthStore } from '../../store/authStore';
 import type { Player } from '../../store/types';
 import type { PlayerFilter } from '../validations/player';
 
@@ -127,7 +128,18 @@ export function usePlayersQuery(
     ...options,
   });
 
-  const allPlayers = query.data ?? mockPlayers;
+  const user = useAuthStore((state) => state.user);
+  const scoutTeam = (user && user.subRole === 'scout' && user.organization) ? user.organization.trim() : null;
+
+  let allPlayers = query.data ?? mockPlayers;
+
+  // Filter players by scout's associated organization
+  if (scoutTeam) {
+    allPlayers = allPlayers.filter(
+      (p) => p.team && p.team.toLowerCase() === scoutTeam.toLowerCase()
+    );
+  }
+
   const isFallback = allPlayers === mockPlayers && !query.isLoading;
 
   // Client-side filtreleme ve sıralama

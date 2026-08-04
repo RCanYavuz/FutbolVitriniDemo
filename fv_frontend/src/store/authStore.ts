@@ -27,6 +27,7 @@ export const MOCK_CREDENTIALS: MockCredential[] = [
       name: 'Ahmet Yılmaz',
       role: 'club',
       subRole: 'scout',
+      organization: 'FC Porto B',
       avatarUrl: 'https://ui-avatars.com/api/?name=Ahmet+Yilmaz&background=00B0FF&color=fff&bold=true',
     },
   },

@@ -34,6 +34,7 @@ const seedUsers = [
     displayName: 'Ahmet Yılmaz',
     role: Role.CLUB,
     subRole: SubRole.SCOUT,
+    organization: 'FC Porto B',
     avatarUrl:
       'https://ui-avatars.com/api/?name=Ahmet+Yilmaz&background=00B0FF&color=fff&bold=true',
   },
@@ -87,10 +88,12 @@ interface SeedPlayer {
   passingAcc: number;
 }
 
-async function seedUser(u: (typeof seedUsers)[number]) {
+async function seedUser(u: any) {
   return prisma.user.upsert({
     where: { username: u.username },
-    update: {},
+    update: {
+      organization: u.organization || null,
+    },
     create: {
       username: u.username,
       email: u.email,
@@ -98,6 +101,7 @@ async function seedUser(u: (typeof seedUsers)[number]) {
       passwordHash: await hash(u.password, BCRYPT_ROUNDS),
       role: u.role,
       subRole: u.subRole,
+      organization: u.organization || null,
       avatarUrl: u.avatarUrl,
       status: AccountStatus.ACTIVE,
     },

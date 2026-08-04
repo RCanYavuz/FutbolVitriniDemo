@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { playersApi } from '../lib/players.api';
 import type { Player, Position } from './types';
 import { mockPlayers } from './mockData';
@@ -146,6 +147,13 @@ interface ScoutingState {
   filteredPlayers: () => Player[];
   loadPlayers: () => Promise<void>;
 
+  /* ── Quick Wins State ── */
+  bookmarkedPlayers: string[];
+  recentSearches: string[];
+  toggleBookmark: (id: string) => void;
+  addRecentSearch: (query: string) => void;
+  clearRecentSearches: () => void;
+
   /* ── Filter actions ── */
   setAgeRange: (range: [number, number]) => void;
   togglePosition: (pos: Position) => void;
@@ -168,14 +176,39 @@ interface ScoutingState {
 
 let activePlayersLoad: Promise<void> | null = null;
 
-export const useScoutingStore = create<ScoutingState>((set, get) => ({
-  players: mockPlayers,
-  isLoadingPlayers: false,
-  playersError: null,
-  filters: { ...defaultFilters },
-  comparisonSelection: [],
-  searchQuery: '',
-  drawerOpen: false,
+export const useScoutingStore = create<ScoutingState>()(
+  persist(
+    (set, get) => ({
+      players: mockPlayers,
+      isLoadingPlayers: false,
+      playersError: null,
+      filters: { ...defaultFilters },
+      comparisonSelection: [],
+      searchQuery: '',
+      drawerOpen: false,
+
+      /* ── Quick Wins State ── */
+      bookmarkedPlayers: [],
+      recentSearches: [],
+
+      toggleBookmark: (id) =>
+        set((state) => {
+          const bookmarks = state.bookmarkedPlayers;
+          if (bookmarks.includes(id)) {
+            return { bookmarkedPlayers: bookmarks.filter((b) => b !== id) };
+          }
+          return { bookmarkedPlayers: [...bookmarks, id] };
+        }),
+
+      addRecentSearch: (query) =>
+        set((state) => {
+          if (!query.trim()) return state;
+          const q = query.trim();
+          const searches = state.recentSearches.filter((s) => s !== q);
+          return { recentSearches: [q, ...searches].slice(0, 5) };
+        }),
+
+      clearRecentSearches: () => set({ recentSearches: [] }),
 
   loadPlayers: () => {
     if (activePlayersLoad) return activePlayersLoad;
@@ -297,4 +330,13 @@ export const useScoutingStore = create<ScoutingState>((set, get) => ({
     }),
 
   closeDrawer: () => set({ drawerOpen: false }),
-}));
+    }),
+    {
+      name: 'scouting-store',
+      partialize: (state) => ({
+        bookmarkedPlayers: state.bookmarkedPlayers,
+        recentSearches: state.recentSearches,
+      }),
+    }
+  )
+);

@@ -36,7 +36,7 @@ function renderLogin() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterProbe />} />
-        <Route path="/club" element={<p>kulup paneli</p>} />
+        <Route path="/vitrin" element={<p>vitrin paneli</p>} />
       </Routes>
     </MemoryRouter>,
   );
@@ -84,7 +84,7 @@ describe('LoginPage', () => {
     await user.type(screen.getByLabelText('Şifre'), 'scout123');
     await user.click(screen.getByRole('button', { name: /Giriş Yap/i }));
 
-    await waitFor(() => expect(screen.getByText('kulup paneli')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('vitrin paneli')).toBeInTheDocument());
     expect(useAuthStore.getState().isAuthenticated).toBe(true);
   });
 

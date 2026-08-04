@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { getDefaultPath } from './navigation';
 
 describe('getDefaultPath', () => {
-  it('her rol icin kendi panelini dondurur', () => {
-    expect(getDefaultPath('admin')).toBe('/admin');
-    expect(getDefaultPath('club')).toBe('/club');
-    expect(getDefaultPath('player')).toBe('/player-profile');
+  it('her rol icin anasayfayi (vitrin) dondurur', () => {
+    expect(getDefaultPath('admin')).toBe('/vitrin');
+    expect(getDefaultPath('club')).toBe('/vitrin');
+    expect(getDefaultPath('player')).toBe('/vitrin');
+    expect(getDefaultPath('unknown' as any)).toBe('/vitrin');
   });
 });

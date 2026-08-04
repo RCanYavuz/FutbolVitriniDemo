@@ -21,9 +21,7 @@ function renderAt(path: string, element: React.ReactNode) {
       <Routes>
         <Route path={path} element={element} />
         <Route path="/login" element={<p>giris ekrani</p>} />
-        <Route path="/admin" element={<p>admin paneli</p>} />
-        <Route path="/club" element={<p>kulup paneli</p>} />
-        <Route path="/player-profile" element={<p>futbolcu paneli</p>} />
+        <Route path="/vitrin" element={<p>vitrin paneli</p>} />
       </Routes>
     </MemoryRouter>,
   );
@@ -69,7 +67,7 @@ describe('ProtectedRoute', () => {
       </ProtectedRoute>,
     );
 
-    expect(screen.getByText('futbolcu paneli')).toBeInTheDocument();
+    expect(screen.getByText('vitrin paneli')).toBeInTheDocument();
     expect(screen.queryByText('admin icerigi')).not.toBeInTheDocument();
   });
 
@@ -85,6 +83,6 @@ describe('ProtectedRoute', () => {
     );
 
     expect(screen.queryByText('scout icerigi')).not.toBeInTheDocument();
-    expect(screen.getByText('kulup paneli')).toBeInTheDocument();
+    expect(screen.getByText('vitrin paneli')).toBeInTheDocument();
   });
 });
