@@ -413,3 +413,67 @@ input[type="checkbox"]:focus {
   border: 2px solid #0B0F12;
 }
 
+/* ── Homepage: Hero Gradient ── */
+.hero-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--color-pitch-black) 0%,
+    rgba(0, 230, 118, 0.03) 40%,
+    rgba(0, 176, 255, 0.02) 70%,
+    var(--color-pitch-black) 100%
+  );
+}
+
+/* ── Homepage: Featured Card Border ── */
+.card-featured {
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.03) 0%,
+    transparent 50%
+  );
+}
+
+/* ── Homepage: Sidebar Scrollable ── */
+.sidebar-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-standard) transparent;
+}
+.sidebar-scrollable::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-border-standard);
+  border-radius: 2px;
+}
+
+/* ── Homepage: Mobile drawer slide-in ── */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.25s ease-out forwards;
+}
+
+/* ── Homepage: Stagger fade-in for grid items ── */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

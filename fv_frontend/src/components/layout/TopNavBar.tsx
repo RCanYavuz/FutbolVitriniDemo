@@ -143,13 +143,32 @@ export default function TopNavBar() {
             </NavLink>
           )}
 
-          <button
-            onClick={handleLogout}
-            className="text-accent-red hover:bg-surface-secondary px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5"
-          >
-            <span className="material-symbols-outlined text-[18px]">logout</span>
-            <span className="hidden sm:inline">Çıkış</span>
-          </button>
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="text-accent-red hover:bg-surface-secondary px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5"
+            >
+              <span className="material-symbols-outlined text-[18px]">logout</span>
+              <span className="hidden sm:inline">Çıkış</span>
+            </button>
+          )}
+
+          {!user && (
+            <div className="flex items-center gap-2">
+              <NavLink
+                to="/login"
+                className="text-text-muted hover:text-on-surface px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors"
+              >
+                Giriş Yap
+              </NavLink>
+              <NavLink
+                to="/register"
+                className="bg-pitch-green hover:bg-emerald-400 text-pitch-black font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition-colors shadow-sm"
+              >
+                Kaydol
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
 

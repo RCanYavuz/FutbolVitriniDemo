@@ -5,6 +5,7 @@ import ProtectedRoute from './components/layout/ProtectedRoute';
 import { getDefaultPath } from './lib/navigation';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import HomePage from './pages/HomePage';
 import ClubWorkspace from './pages/ClubWorkspace';
 import PlayerShowcase from './pages/PlayerShowcase';
 import ScoutingHub from './pages/ScoutingHub';
@@ -19,7 +20,7 @@ import { useAuthStore } from './store/authStore';
 /* ─── Redirect Helper: "/" → role home ─────────────────────────── */
 function RoleRedirect() {
   const { isAuthenticated, user } = useAuthStore();
-  if (!isAuthenticated || !user) return <Navigate to="/login" replace />;
+  if (!isAuthenticated || !user) return <Navigate to="/vitrin" replace />;
   return <Navigate to={getDefaultPath(user.role)} replace />;
 }
 
@@ -57,6 +58,9 @@ export default function App() {
 
         {/* Authenticated routes — with AppLayout (TopNavBar) */}
         <Route element={<AppLayout />}>
+          {/* Public Showcase / Homepage */}
+          <Route path="/vitrin" element={<HomePage />} />
+
           {/* Root redirect */}
           <Route path="/" element={<RoleRedirect />} />
 
