@@ -27,7 +27,7 @@ export default function HeroSearch({ filters, onSearch, totalPlayers }: HeroSear
         <div className="text-center mb-8">
           <h1 className="text-display-lg text-on-surface mb-3">
             Futbolun{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-tactical-blue">
+            <span className="text-[#FFD300]">
               Vitrini
             </span>
           </h1>

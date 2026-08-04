@@ -47,7 +47,7 @@ export default function PlayerListRow({
   const avatarUrl = player.imageUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(player.name)}&background=1f2b36&color=d7e4f2&bold=true&size=64`;
 
   return (
-    <div className="group flex items-center gap-4 px-4 py-3 bg-surface-primary border border-border-standard rounded-xl hover:border-emerald-500/30 transition-all duration-200">
+    <div className="group flex items-center gap-4 px-4 py-3 bg-surface-primary border border-border-standard rounded-xl hover:border-[#FFD300]/30 transition-all duration-200">
       {/* Avatar + Rating */}
       <div className="relative flex-shrink-0">
         <img
@@ -66,7 +66,7 @@ export default function PlayerListRow({
       {/* Name + Team */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <h4 className="text-sm font-bold text-on-surface truncate group-hover:text-emerald-300 transition-colors">
+          <h4 className="text-sm font-bold text-on-surface truncate group-hover:text-[#FFD300] transition-colors">
             {player.name}
           </h4>
           <Badge variant={positionVariant(player.position)} size="sm">
@@ -89,14 +89,14 @@ export default function PlayerListRow({
 
       {/* Value */}
       <div className="hidden md:flex items-center gap-1 text-xs">
-        <Banknote className="w-3.5 h-3.5 text-emerald-500/70" />
+        <Banknote className="w-3.5 h-3.5 text-[#FFD300]/70" />
         <span className="font-semibold text-on-surface tabular-nums">{formatMarketValue(value)}</span>
       </div>
 
       {/* AI Score */}
       <div className="flex items-center gap-1 text-xs">
-        <Star className="w-3 h-3 text-emerald-400" />
-        <span className="font-bold text-emerald-400 tabular-nums">{player.aiScore.toFixed(1)}</span>
+        <Star className="w-3 h-3 text-[#FFD300]" />
+        <span className="font-bold text-[#FFD300] tabular-nums">{player.aiScore.toFixed(1)}</span>
       </div>
 
       {/* Actions */}

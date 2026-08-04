@@ -53,14 +53,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* Public */}
+        <Route path="/vitrin" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
         {/* Authenticated routes — with AppLayout (TopNavBar) */}
         <Route element={<AppLayout />}>
-          {/* Public Showcase / Homepage */}
-          <Route path="/vitrin" element={<HomePage />} />
-
           {/* Root redirect */}
           <Route path="/" element={<RoleRedirect />} />
 

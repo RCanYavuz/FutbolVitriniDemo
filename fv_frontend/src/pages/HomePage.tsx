@@ -13,6 +13,7 @@
 
 import { useFilterParams } from '../lib/hooks/useFilterParams';
 import { usePlayersQuery } from '../lib/hooks/usePlayersQuery';
+import TopNavBar from '../components/layout/TopNavBar';
 import HeroSearch from '../components/organisms/HeroSearch';
 import HomeFilterSidebar from '../components/organisms/HomeFilterSidebar';
 import ShowcaseGrid from '../components/organisms/ShowcaseGrid';
@@ -71,7 +72,10 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-pitch-black flex flex-col">
+    <div className="h-screen bg-pitch-black flex flex-col overflow-y-auto scroll-smooth">
+      {/* ── Top Navigation Bar ── */}
+      <TopNavBar />
+
       {/* ── Hero Section ── */}
       <HeroSearch
         filters={filters}
@@ -80,7 +84,7 @@ export default function HomePage() {
       />
 
       {/* ── Main Content (Sidebar + Grid) ── */}
-      <div className="flex-1">
+      <div className="h-screen flex-shrink-0">
         <MarketplaceLayout
           filterCount={activeCount}
           sidebar={

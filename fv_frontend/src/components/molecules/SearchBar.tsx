@@ -36,7 +36,7 @@ export default function SearchBar({ filters, onSearch }: SearchBarProps) {
     <form onSubmit={handleSubmit} className="w-full">
       <div className="flex flex-col sm:flex-row gap-2">
         {/* Main search area */}
-        <div className="flex-1 flex items-center bg-surface-primary/80 backdrop-blur-sm border border-border-standard rounded-xl overflow-hidden focus-within:border-emerald-500/40 focus-within:ring-1 focus-within:ring-emerald-500/20 transition-all">
+        <div className="flex-1 flex items-center bg-surface-primary/80 backdrop-blur-sm border border-border-standard rounded-xl overflow-hidden focus-within:border-[#FFD300]/40 focus-within:ring-1 focus-within:ring-[#FFD300]/20 transition-all">
           {/* Position dropdown */}
           <select
             className="bg-transparent border-r border-border-standard/60 text-sm text-on-surface px-3 py-3.5 outline-none cursor-pointer appearance-none min-w-[140px] font-medium"
@@ -66,7 +66,7 @@ export default function SearchBar({ filters, onSearch }: SearchBarProps) {
           {/* Search button */}
           <button
             type="submit"
-            className="bg-emerald-500 hover:bg-emerald-400 text-pitch-black font-bold text-sm px-6 py-3.5 transition-colors flex-shrink-0"
+            className="bg-[#FFD300] hover:bg-[#E6BD00] text-[#0B0F12] font-bold text-sm px-6 py-3.5 transition-colors flex-shrink-0 cursor-pointer"
           >
             Ara
           </button>

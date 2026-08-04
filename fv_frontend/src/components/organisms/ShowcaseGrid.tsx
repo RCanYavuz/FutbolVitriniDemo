@@ -11,7 +11,7 @@ import {
   ArrowUpDown,
   SearchX,
   Users,
-  Sparkles,
+  Star,
 } from 'lucide-react';
 import ViewToggle from '../atoms/ViewToggle';
 import SkeletonCard from '../atoms/SkeletonCard';
@@ -64,7 +64,7 @@ export default function ShowcaseGrid({
       {showFeatured && !isLoading && (
         <div className="mb-8">
           <div className="flex items-center gap-2.5 mb-4">
-            <Sparkles className="w-5 h-5 text-amber-400" />
+            <Star className="w-4.5 h-4.5 text-[#FFD300] fill-[#FFD300]" />
             <h2 className="text-headline-md text-on-surface">Vitrindekiler</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -82,7 +82,7 @@ export default function ShowcaseGrid({
       {/* ═══ RESULTS HEADER ═══ */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-3">
         <div className="flex items-center gap-2.5">
-          <Users className="w-4 h-4 text-emerald-400" />
+          <Users className="w-4 h-4 text-[#FFD300]" />
           <h3 className="text-sm text-text-muted">
             <span className="text-on-surface font-bold text-base tabular-nums">{total}</span>{' '}
             oyuncu bulundu
@@ -100,7 +100,7 @@ export default function ShowcaseGrid({
           <div className="flex items-center gap-1.5">
             <ArrowUpDown className="w-3.5 h-3.5 text-text-muted" />
             <select
-              className="bg-surface-container-high border border-border-standard/60 text-on-surface text-xs font-medium rounded-lg px-2.5 py-1.5 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 outline-none transition-all appearance-none cursor-pointer pr-6"
+              className="bg-surface-container-high border border-border-standard/60 text-on-surface text-xs font-medium rounded-lg px-2.5 py-1.5 focus:border-[#FFD300]/50 focus:ring-1 focus:ring-[#FFD300]/20 outline-none transition-all appearance-none cursor-pointer pr-6"
               value={filters.sort}
               onChange={(e) => onFilterChange('sort', e.target.value as PlayerFilter['sort'])}
             >
