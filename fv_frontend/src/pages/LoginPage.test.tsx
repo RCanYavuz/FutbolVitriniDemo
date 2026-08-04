@@ -4,7 +4,6 @@ import {
   MemoryRouter,
   Route,
   Routes,
-  useLocation,
 } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ApiError } from '../lib/api';
@@ -15,19 +14,7 @@ import LoginPage from './LoginPage';
 const initialState = useAuthStore.getState();
 
 function RegisterProbe() {
-  const location = useLocation();
-  const state = location.state as
-    | { selectedRole?: string; selectedSubRole?: string }
-    | null;
-
-  return (
-    <>
-      <p>kayit ekrani</p>
-      <output data-testid="register-state">
-        {state?.selectedRole}/{state?.selectedSubRole}
-      </output>
-    </>
-  );
+  return <p>kayit ekrani</p>;
 }
 
 function renderLogin() {
@@ -52,20 +39,9 @@ describe('LoginPage', () => {
     vi.restoreAllMocks();
   });
 
-  it('once rol secimi gosterir', () => {
+  it('dogrudan giris formunu gosterir', () => {
     renderLogin();
-
-    expect(screen.getByText('Scout Girişi')).toBeInTheDocument();
-    expect(screen.queryByLabelText('Kullanıcı Adı')).not.toBeInTheDocument();
-  });
-
-  it('rol secildikten sonra giris formuna gecer', async () => {
-    const user = userEvent.setup();
-    renderLogin();
-
-    await user.click(screen.getByText('Scout Girişi'));
-
-    expect(screen.getByLabelText('Kullanıcı Adı')).toBeInTheDocument();
+    expect(screen.getByLabelText(/Kullanıcı Adı/i)).toBeInTheDocument();
   });
 
   it('dogru bilgilerle giris yapip kullanicinin paneline yonlendirir', async () => {
@@ -79,8 +55,7 @@ describe('LoginPage', () => {
     const user = userEvent.setup();
     renderLogin();
 
-    await user.click(screen.getByText('Scout Girişi'));
-    await user.type(screen.getByLabelText('Kullanıcı Adı'), 'scout');
+    await user.type(screen.getByLabelText(/Kullanıcı Adı/i), 'scout');
     await user.type(screen.getByLabelText('Şifre'), 'scout123');
     await user.click(screen.getByRole('button', { name: /Giriş Yap/i }));
 
@@ -95,8 +70,7 @@ describe('LoginPage', () => {
     const user = userEvent.setup();
     renderLogin();
 
-    await user.click(screen.getByText('Scout Girişi'));
-    await user.type(screen.getByLabelText('Kullanıcı Adı'), 'scout');
+    await user.type(screen.getByLabelText(/Kullanıcı Adı/i), 'scout');
     await user.type(screen.getByLabelText('Şifre'), 'yanlisparola');
     await user.click(screen.getByRole('button', { name: /Giriş Yap/i }));
 
@@ -110,23 +84,8 @@ describe('LoginPage', () => {
     const user = userEvent.setup();
     renderLogin();
 
-    await user.click(screen.getByRole('button', { name: 'Kayıt Olun' }));
+    await user.click(screen.getByRole('link', { name: 'Kayıt Olun' }));
 
     expect(screen.getByText('kayit ekrani')).toBeInTheDocument();
-  });
-
-  it.each([
-    ['Scout Girişi', 'scout'],
-    ['Antrenör Girişi', 'coach'],
-  ])('%s kaydinda secilen alt rolu tasir', async (roleLabel, subRole) => {
-    const user = userEvent.setup();
-    renderLogin();
-
-    await user.click(screen.getByText(roleLabel));
-    await user.click(screen.getByRole('button', { name: 'Kayıt Olun' }));
-
-    expect(screen.getByTestId('register-state')).toHaveTextContent(
-      `club/${subRole}`,
-    );
   });
 });

@@ -11,11 +11,9 @@ import {
   Lock,
   AlertCircle,
   Info,
-  Shield,
   Search,
   ClipboardList,
   Target,
-  ChevronRight,
   Copy,
   Check,
 } from 'lucide-react';
@@ -35,36 +33,6 @@ function FloatingOrbs() {
       <div className="absolute top-1/3 left-1/2 h-px w-80 -translate-x-1/2 bg-gradient-to-r from-transparent via-tactical-blue/20 to-transparent rotate-12" />
       <div className="absolute bottom-1/4 left-1/3 h-px w-64 bg-gradient-to-r from-transparent via-pitch-green/15 to-transparent -rotate-6" />
     </div>
-  );
-}
-
-/* ─── Role Card for Selection ──────────────────────────────────── */
-interface RoleCardProps {
-  icon: React.ReactNode;
-  label: string;
-  description: string;
-  accentClass: string;
-  borderHoverClass: string;
-  onClick: () => void;
-}
-
-function RoleCard({ icon, label, description, accentClass, borderHoverClass, onClick }: RoleCardProps) {
-  return (
-    <button
-      onClick={onClick}
-      className={`group w-full bg-surface-container-high/60 backdrop-blur-sm border border-border-standard rounded-xl py-4 px-5 flex items-center gap-4 transition-all duration-300 hover:border-opacity-100 hover:scale-[1.02] hover:shadow-lg ${borderHoverClass}`}
-    >
-      <div className={`flex-shrink-0 p-2.5 rounded-lg transition-colors duration-300 ${accentClass}`}>
-        {icon}
-      </div>
-      <div className="flex-1 text-left">
-        <span className="block text-sm font-semibold text-on-surface group-hover:text-white transition-colors">
-          {label}
-        </span>
-        <span className="block text-xs text-text-muted mt-0.5">{description}</span>
-      </div>
-      <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-on-surface group-hover:translate-x-0.5 transition-all" />
-    </button>
   );
 }
 
@@ -124,8 +92,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const { login, loginError, clearError, isAuthenticated, user } = useAuthStore();
 
-  const [step, setStep] = useState<'role' | 'credentials'>('role');
-  const [selectedRoleKey, setSelectedRoleKey] = useState<string | null>(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -137,23 +103,6 @@ export default function LoginPage() {
       navigate(getDefaultPath(user.role), { replace: true });
     }
   }, [isAuthenticated, user, navigate]);
-
-  /* ── Handlers ── */
-  const handleRoleSelect = (roleKey: string) => {
-    setSelectedRoleKey(roleKey);
-    setStep('credentials');
-    setUsername('');
-    setPassword('');
-    clearError();
-  };
-
-  const handleBack = () => {
-    setStep('role');
-    setSelectedRoleKey(null);
-    setUsername('');
-    setPassword('');
-    clearError();
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -171,48 +120,6 @@ export default function LoginPage() {
       }
     }
   };
-
-  /* ── Role configurations ── */
-  const roles = [
-    {
-      key: 'admin',
-      icon: <Shield className="w-5 h-5" />,
-      label: 'Admin Paneli',
-      description: 'Sistem yönetimi ve kullanıcı kontrolü',
-      accentClass: 'bg-accent-red/10 text-accent-red group-hover:bg-accent-red/20',
-      borderHoverClass: 'hover:border-accent-red/50',
-      colorClass: 'text-accent-red',
-    },
-    {
-      key: 'scout',
-      icon: <Search className="w-5 h-5" />,
-      label: 'Scout Girişi',
-      description: 'Yetenek keşfi ve oyuncu analizi',
-      accentClass: 'bg-tactical-blue/10 text-tactical-blue group-hover:bg-tactical-blue/20',
-      borderHoverClass: 'hover:border-tactical-blue/50',
-      colorClass: 'text-tactical-blue',
-    },
-    {
-      key: 'coach',
-      icon: <ClipboardList className="w-5 h-5" />,
-      label: 'Antrenör Girişi',
-      description: 'Takım yönetimi ve performans takibi',
-      accentClass: 'bg-pitch-green/10 text-pitch-green group-hover:bg-pitch-green/20',
-      borderHoverClass: 'hover:border-pitch-green/50',
-      colorClass: 'text-pitch-green',
-    },
-    {
-      key: 'player',
-      icon: <Target className="w-5 h-5" />,
-      label: 'Futbolcu Girişi',
-      description: 'Profil yönetimi ve vitrin oluşturma',
-      accentClass: 'bg-pitch-green/10 text-pitch-green group-hover:bg-pitch-green/20',
-      borderHoverClass: 'hover:border-pitch-green/50',
-      colorClass: 'text-pitch-green',
-    },
-  ];
-
-  const activeRole = roles.find((r) => r.key === selectedRoleKey);
 
   /* ══════════════════════════════════════════════════════════════════
      RENDER
@@ -291,171 +198,106 @@ export default function LoginPage() {
 
         {/* ━━━ RIGHT: Login Form ━━━ */}
         <div className="relative bg-surface-container border-l border-border-standard/60 p-8 lg:p-10 flex flex-col justify-center">
+          <div className="animate-fade-in">
+            <h2 className="text-headline-md text-on-surface mb-1.5">Giriş Yap</h2>
+            <p className="text-sm text-text-muted mb-7">
+              Hesabınıza erişmek için bilgilerinizi girin.
+            </p>
 
-          {/* Step 1: Role Selection */}
-          {step === 'role' && (
-            <div className="animate-fade-in">
-              <h2 className="text-headline-md text-on-surface mb-1.5">Sisteme Giriş</h2>
-              <p className="text-sm text-text-muted mb-7">
-                Giriş yapmak istediğiniz rolü seçin.
-              </p>
-
-              <div className="space-y-3">
-                {roles.map((r) => (
-                  <RoleCard
-                    key={r.key}
-                    icon={r.icon}
-                    label={r.label}
-                    description={r.description}
-                    accentClass={r.accentClass}
-                    borderHoverClass={r.borderHoverClass}
-                    onClick={() => handleRoleSelect(r.key)}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Username */}
+              <div>
+                <label htmlFor="login-username" className="block text-label-sm text-text-muted mb-2">
+                  Kullanıcı Adı veya E-posta
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+                  <input
+                    id="login-username"
+                    type="text"
+                    autoComplete="username"
+                    autoFocus
+                    className="w-full bg-surface-container-high border border-border-standard rounded-lg py-3 pl-10 pr-4 text-on-surface text-sm placeholder:text-text-muted/40 focus:outline-none focus:border-pitch-green/60 focus:ring-1 focus:ring-pitch-green/20 transition-all"
+                    placeholder="E-posta adresiniz veya kullanıcı adınız"
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                      clearError();
+                    }}
                   />
-                ))}
+                </div>
               </div>
 
-              <p className="mt-7 text-center text-sm text-text-muted">
-                Hesabınız yok mu?{' '}
-                <button
-                  type="button"
-                  onClick={() => navigate('/register')}
-                  className="text-pitch-green font-semibold hover:underline"
-                >
-                  Kayıt Olun
-                </button>
-              </p>
-            </div>
-          )}
-
-          {/* Step 2: Credential Form */}
-          {step === 'credentials' && activeRole && (
-            <div className="animate-fade-in">
-              {/* Back button */}
-              <button
-                onClick={handleBack}
-                className="flex items-center gap-1.5 text-xs text-text-muted hover:text-on-surface mb-6 transition-colors w-fit group"
-              >
-                <ChevronRight className="w-3.5 h-3.5 rotate-180 group-hover:-translate-x-0.5 transition-transform" />
-                Rol Seçimine Dön
-              </button>
-
-              <h2 className="text-headline-md text-on-surface mb-1.5">Giriş Yap</h2>
-              <p className="text-sm text-text-muted mb-7">
-                <span className={`font-semibold ${activeRole.colorClass}`}>
-                  {activeRole.label.replace(' Girişi', '').replace(' Paneli', '')}
-                </span>{' '}
-                olarak giriş yapıyorsunuz.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Username */}
-                <div>
-                  <label htmlFor="login-username" className="block text-label-sm text-text-muted mb-2">
-                    Kullanıcı Adı
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                    <input
-                      id="login-username"
-                      type="text"
-                      autoComplete="username"
-                      autoFocus
-                      className="w-full bg-surface-container-high border border-border-standard rounded-lg py-3 pl-10 pr-4 text-on-surface text-sm placeholder:text-text-muted/40 focus:outline-none focus:border-pitch-green/60 focus:ring-1 focus:ring-pitch-green/20 transition-all"
-                      placeholder={`örn: ${selectedRoleKey}`}
-                      value={username}
-                      onChange={(e) => {
-                        setUsername(e.target.value);
-                        clearError();
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Password */}
-                <div>
-                  <label htmlFor="login-password" className="block text-label-sm text-text-muted mb-2">
-                    Şifre
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                    <input
-                      id="login-password"
-                      type={showPassword ? 'text' : 'password'}
-                      autoComplete="current-password"
-                      className="w-full bg-surface-container-high border border-border-standard rounded-lg py-3 pl-10 pr-10 text-on-surface text-sm placeholder:text-text-muted/40 focus:outline-none focus:border-pitch-green/60 focus:ring-1 focus:ring-pitch-green/20 transition-all"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        clearError();
-                      }}
-                    />
-                    <button
-                      type="button"
-                      tabIndex={-1}
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-on-surface transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Error */}
-                {loginError && (
-                  <div className="flex items-center gap-2 text-accent-red text-xs bg-accent-red/10 border border-accent-red/20 rounded-lg px-3 py-2.5">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    {loginError}
-                  </div>
-                )}
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  disabled={loading || !username || !password}
-                  className="w-full bg-surface-secondary border border-border-standard text-on-surface text-sm font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-high hover:border-pitch-green/60 hover:shadow-[0_0_20px_rgba(0,230,118,0.1)] transition-all duration-300 disabled:opacity-40 disabled:hover:border-border-standard disabled:hover:shadow-none"
-                >
-                  {loading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <>
-                      Giriş Yap
-                      <LogIn className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              {/* Admin disindaki roller icin kayit; secilen rol kayit ekranina tasinir */}
-              {selectedRoleKey !== 'admin' && (
-                <p className="mt-6 text-center text-sm text-text-muted">
-                  Hesabınız yok mu?{' '}
+              {/* Password */}
+              <div>
+                <label htmlFor="login-password" className="block text-label-sm text-text-muted mb-2">
+                  Şifre
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+                  <input
+                    id="login-password"
+                    type={showPassword ? 'text' : 'password'}
+                    autoComplete="current-password"
+                    className="w-full bg-surface-container-high border border-border-standard rounded-lg py-3 pl-10 pr-10 text-on-surface text-sm placeholder:text-text-muted/40 focus:outline-none focus:border-pitch-green/60 focus:ring-1 focus:ring-pitch-green/20 transition-all"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      clearError();
+                    }}
+                  />
                   <button
                     type="button"
-                    onClick={() =>
-                      navigate('/register', {
-                        state: {
-                          selectedRole:
-                            selectedRoleKey === 'player' ? 'player' : 'club',
-                          ...(selectedRoleKey === 'scout' ||
-                          selectedRoleKey === 'coach'
-                            ? { selectedSubRole: selectedRoleKey }
-                            : {}),
-                        },
-                      })
-                    }
-                    className="text-pitch-green font-semibold hover:underline"
+                    tabIndex={-1}
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-on-surface transition-colors"
                   >
-                    Kayıt Olun
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </button>
-                </p>
+                </div>
+              </div>
+
+              {/* Error */}
+              {/* @ts-ignore */}
+              {loginError && (
+                <div className="flex items-center gap-2 text-accent-red text-xs bg-accent-red/10 border border-accent-red/20 rounded-lg px-3 py-2.5">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  {loginError}
+                </div>
               )}
-            </div>
-          )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={loading || !username || !password}
+                className="w-full bg-surface-secondary border border-border-standard text-on-surface text-sm font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-high hover:border-pitch-green/60 hover:shadow-[0_0_20px_rgba(0,230,118,0.1)] transition-all duration-300 disabled:opacity-40 disabled:hover:border-border-standard disabled:hover:shadow-none"
+              >
+                {loading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    Giriş Yap
+                    <LogIn className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </form>
+
+            <p className="mt-6 text-center text-sm text-text-muted">
+              Hesabınız yok mu?{' '}
+              <Link
+                to="/register"
+                className="text-pitch-green font-semibold hover:underline"
+              >
+                Kayıt Olun
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
 
