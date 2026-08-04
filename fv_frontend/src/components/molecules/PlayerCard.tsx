@@ -123,7 +123,7 @@ export default function MarketplacePlayerCard({
         transition-all duration-300 hover:-translate-y-0.5
         ${
           featured
-            ? 'border-[#FFD300]/30 hover:border-[#FFD300]/60 shadow-[0_0_20px_rgba(255,211,0,0.04)] hover:shadow-[0_0_30px_rgba(255,211,0,0.1)]'
+            ? 'border-emerald-500/30 hover:border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.04)] hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]'
             : 'border-border-standard hover:border-emerald-500/40 hover:shadow-[0_0_24px_rgba(16,185,129,0.08)]'
         }
       `}
@@ -131,7 +131,7 @@ export default function MarketplacePlayerCard({
       {/* Featured ribbon */}
       {featured && (
         <div className="absolute top-0 right-0 z-10">
-          <div className="bg-gradient-to-l from-[#FFD300] to-[#E6BD00] text-[#0B0F12] text-[9.5px] font-black uppercase px-3 py-1 rounded-bl-lg shadow-lg">
+          <div className="bg-gradient-to-l from-emerald-500 to-emerald-600 text-pitch-black text-[9.5px] font-black uppercase px-3 py-1 rounded-bl-lg shadow-lg">
             ⭐ Vitrin
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function MarketplacePlayerCard({
               w-14 h-14 rounded-xl object-cover border transition-colors
               ${
                 featured
-                  ? 'border-[#FFD300]/30 group-hover:border-[#FFD300]/60'
+                  ? 'border-emerald-500/30 group-hover:border-emerald-500/60'
                   : 'border-border-standard/60 group-hover:border-emerald-500/30'
               }
             `}
@@ -164,7 +164,7 @@ export default function MarketplacePlayerCard({
 
         {/* Name + Meta */}
         <div className="flex-1 min-w-0">
-          <h4 className={`text-sm font-bold truncate transition-colors ${featured ? 'text-[#FFD300] group-hover:text-[#FFE14D]' : 'text-on-surface group-hover:text-emerald-300'}`}>
+          <h4 className={`text-sm font-bold truncate transition-colors ${featured ? 'text-emerald-400 group-hover:text-emerald-300' : 'text-on-surface group-hover:text-emerald-300'}`}>
             {player.name}
           </h4>
 

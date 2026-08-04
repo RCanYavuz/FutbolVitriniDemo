@@ -84,10 +84,10 @@ export default function HomeFilterSidebar({
       <div className="p-5 border-b border-border-standard flex-shrink-0">
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2.5">
-            <Filter className="w-5 h-5 text-[#FFD300]" />
+            <Filter className="w-5 h-5 text-emerald-400" />
             <h2 className="text-base font-bold text-on-surface tracking-tight">Filtreler</h2>
             {activeCount > 0 && (
-              <span className="bg-[#FFD300]/20 text-[#FFD300] text-[10px] font-bold px-2 py-0.5 rounded-full">
+              <span className="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">
                 {activeCount}
               </span>
             )}
@@ -96,7 +96,7 @@ export default function HomeFilterSidebar({
             <button
               type="button"
               onClick={onReset}
-              className="flex items-center gap-1 text-xs text-text-muted hover:text-[#FFD300] transition-colors"
+              className="flex items-center gap-1 text-xs text-text-muted hover:text-emerald-400 transition-colors"
               title="Sıfırla"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -123,7 +123,7 @@ export default function HomeFilterSidebar({
         <ChevronRight className="w-2.5 h-2.5 text-text-muted/50" />
         <span>Spor</span>
         <ChevronRight className="w-2.5 h-2.5 text-text-muted/50" />
-        <span className="text-[#FFD300] font-semibold">Futbolcular</span>
+        <span className="text-emerald-400 font-semibold">Futbolcular</span>
       </div>
 
       {/* ── Scrollable Filters ── */}
@@ -142,7 +142,7 @@ export default function HomeFilterSidebar({
                     onClick={() => onTogglePosition(pos)}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                       active
-                        ? 'bg-[#FFD300]/10 text-[#FFD300] border-l-2 border-[#FFD300] rounded-l-none'
+                        ? 'bg-emerald-500/15 text-emerald-400'
                         : 'text-text-muted hover:text-on-surface hover:bg-surface-container-high/50'
                     }`}
                   >
@@ -243,7 +243,7 @@ export default function HomeFilterSidebar({
                   onClick={() => onFilterChange('preferredFoot', value)}
                   className={`px-3 py-2 rounded-lg text-xs font-semibold border transition-all ${
                     active
-                      ? 'bg-[#FFD300]/10 border-[#FFD300]/30 text-[#FFD300]'
+                      ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400'
                       : 'bg-surface-container-high/40 border-border-standard text-text-muted hover:text-on-surface hover:border-surface-bright'
                   }`}
                 >
@@ -271,7 +271,7 @@ export default function HomeFilterSidebar({
                   onClick={() => onFilterChange('status', value)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${
                     active
-                      ? 'bg-[#FFD300]/10 text-[#FFD300] font-semibold border-l-2 border-[#FFD300] rounded-l-none'
+                      ? 'bg-emerald-500/15 text-emerald-400 font-medium'
                       : 'text-text-muted hover:text-on-surface hover:bg-surface-container-high/50'
                   }`}
                 >
@@ -299,7 +299,7 @@ export default function HomeFilterSidebar({
                   onClick={() => onFilterChange('sort', value)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${
                     active
-                      ? 'bg-[#FFD300]/10 text-[#FFD300] font-semibold border-l-2 border-[#FFD300] rounded-l-none'
+                      ? 'bg-emerald-500/15 text-emerald-400 font-medium'
                       : 'text-text-muted hover:text-on-surface hover:bg-surface-container-high/50'
                   }`}
                 >

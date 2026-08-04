@@ -26,8 +26,8 @@ export default function Chip({
         border transition-all duration-200 cursor-pointer select-none
         ${
           active
-            ? 'bg-[#FFD300]/15 border-[#FFD300]/40 text-[#FFD300] shadow-[0_0_12px_rgba(255,211,0,0.12)]'
-            : 'bg-surface-container-high/50 border-border-standard/60 text-text-muted hover:text-on-surface hover:border-surface-bright hover:bg-surface-container-high'
+          ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.12)]'
+          : 'bg-surface-container-high/50 border-border-standard/60 text-text-muted hover:text-on-surface hover:border-surface-bright hover:bg-surface-container-high'
         }
         ${className}
       `}
