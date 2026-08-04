@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore, MOCK_CREDENTIALS } from '../store/authStore';
 import { getDefaultPath } from '../lib/navigation';
 import {
@@ -230,9 +230,12 @@ export default function LoginPage() {
           <div className="pointer-events-none absolute top-0 right-0 h-40 w-40 bg-gradient-to-bl from-pitch-green/[0.08] to-transparent rounded-bl-full" />
 
           <div>
-            <h1 className="text-headline-lg text-pitch-green tracking-tight mb-1.5">
-              Futbol Vitrini
-            </h1>
+            <Link to="/vitrin" className="inline-block hover:opacity-80 transition-opacity">
+              <h1 className="text-headline-lg text-pitch-green tracking-tight mb-1.5 flex items-center gap-2">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>sports_soccer</span>
+                Futbol Vitrini
+              </h1>
+            </Link>
             <p className="text-sm text-text-muted font-medium tracking-wide">
               Elite Analytics & Scouting Network
             </p>

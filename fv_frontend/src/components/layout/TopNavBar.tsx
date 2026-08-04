@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { useScoutingStore } from '../../store/scoutingStore';
 import { useAuthStore } from '../../store/authStore';
 
@@ -82,7 +82,7 @@ export default function TopNavBar() {
               {mobileOpen ? 'close' : 'menu'}
             </span>
           </button>
-          <div className="flex items-center gap-2">
+          <Link to="/vitrin" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <span className="material-symbols-outlined text-pitch-green text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>
               sports_soccer
             </span>
@@ -94,7 +94,7 @@ export default function TopNavBar() {
                 {subRoleLabel[user.subRole]}
               </span>
             )}
-          </div>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-1 h-full">

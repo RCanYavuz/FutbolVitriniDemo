@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { ApiError } from '../lib/api';
 import {
   authApi,
@@ -175,16 +175,15 @@ export default function RegisterPage() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-tactical-blue/10 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Logo Area */}
-      <button
-        type="button"
-        className="flex items-center gap-2 mb-8 z-10 cursor-pointer"
-        onClick={() => navigate('/login')}
+      <Link
+        to="/vitrin"
+        className="flex items-center gap-2 mb-8 z-10 hover:opacity-80 transition-opacity"
       >
         <div className="w-10 h-10 bg-pitch-green rounded-xl flex items-center justify-center transform rotate-12 shadow-[0_0_15px_rgba(34,197,94,0.4)]">
           <span className="material-symbols-outlined text-pitch-black font-bold -rotate-12 text-2xl">sports_soccer</span>
         </div>
         <span className="text-2xl font-bold text-on-surface tracking-tight">Futbol<span className="text-pitch-green">Vitrini</span></span>
-      </button>
+      </Link>
 
       <div className="w-full max-w-[600px] bg-surface-container border border-border-standard rounded-2xl p-6 md:p-8 shadow-2xl z-10">
         <div className="text-center mb-8">
